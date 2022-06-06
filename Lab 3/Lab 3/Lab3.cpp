@@ -35,7 +35,7 @@ void Task1 ()
     }
 }
 
-int Task2 (const int64_t base, const int64_t exponent, const int64_t mod)
+int Task2 (const int base, const int exponent, const int mod)
 {
     int pow = 1;
     for (int i = 0; i < exponent; i++)
@@ -189,7 +189,7 @@ int main ()
     cout << "Task 1:" << endl;
     Task1 ();
     cout << "Task 2:" << endl;
-    int64_t base, exponent, mod, pow;
+    int base, exponent, mod, pow;
     cout << "Enter a: ";
     cin >> base;
     cout << "Enter x: ";
