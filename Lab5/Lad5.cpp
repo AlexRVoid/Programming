@@ -132,28 +132,14 @@ void Task1() {
             break;
             case 5:
             {
-                exit(1);
+                f = false;
             }
             default:
-                break;
+            {
+                cout << "Invalid comand" << endl;
             }
-        }
-       
-
-        
-        else if (s == 2) {
-            
-        }
-        else if (s == 3) {
-            
-        }
-        else if (s == 4) {
-            get_name(mtram);
-        }
-
-        else if (s == 5) {
-            exit(1);
-
+            break;
+            }
         }
     }
 }
