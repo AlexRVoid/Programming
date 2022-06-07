@@ -35,7 +35,7 @@ void Task2()
 {
 	int n, s;        //n - кол-во входящих чисел, s - кол-во подходящих чисел
 	s = 0;
-	cout << "Kol-vo chisel v viborke = "; cin >> n;
+	cout << "Enter the number of items in the selection: "; cin >> n;
 	vector <int> nums(n, 0);       //инициализация массива
 
 	for (int i = 1; i <= n; i++) {
