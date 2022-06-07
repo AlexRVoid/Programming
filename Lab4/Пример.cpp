@@ -307,188 +307,42 @@ void zad_3() {
 	d.clear();
 }
 
-int mod(int delim, int delit, int stepen) {
-	int a = 0, a0 = delim % delit;
-	for (int i = 1; i <= stepen; i++) {
-		a = delim % delit;
-		delim = a * a0;
-	}
-	return a;
-}
-void zad_4() {
-	// 2^x mod 30803 = 16190
-	int a = 2, p = 30803, y = 16190, m, k, pom1, pom2, i1, j1, brperem = 0, answer;
-	m = k = int(sqrt(p)) + 1;
-	pom1 = y;
-	for (int j = 1; j < m; j++)
-	{
-		pom1 = (pom1 * a) % p; // шаги великана
-		for (int i = 1; i <= k; i++)
-		{
-			pom2 = mod(a, p, i * m); // шаги младенца
-			if (pom1 == pom2)
-			{
-				brperem += 1;
-				i1 = i;
-				j1 = j;
-				break;
-			}
-		}
-		if (brperem != 0)
-		{
-			answer = (i1 * m - j1) % (p - 1);
-			cout << "x = " << answer << endl;
-			break;
-		}
-	}
-	cout << "Checking: y = " << mod(a, p, answer);
-}
-
-vector<int> find(int n) {
-	vector<int> v;
-	int div = 2;
-	while (n > 1) {
-		while (n % div == 0) {
-			n = n / div;
-			v.push_back(div);
-		}
-		div++;
-	}
-	return v;
-}
-
-int moduleOfStepen(int x, int y, int mod) {
-	//x^y
-	int res = 1;
-	int temp = x % mod;
-	int temp1;
-	for (int i = 1; i <= y; i++) {
-		res = res * x % mod;
-	}
-	return res;
-}
-void deliteli(int x, vector < pair<int, int>>& v) {
-	int k = 0;
-	int i = 2;
-	int temp = x;
-	for (i; i < temp; i++) {
-		while (x % i == 0) {
-			k++;
-			x /= i;
-		}
-		if (k != 0) {
-			v.push_back(make_pair(i, k));
-		}
-		k = 0;
-	}
-}
-
-
-bool full_coincidence(vector<int>& a, vector < pair<int, int>>& b) {
-	bool flag = true;
-	for (auto i : b) {
-		if
-			(find(a.begin(), a.end(), i.first) == a.end())
-			flag = false;
-	}
-	if (b.size() == 0) flag = false;
-	return flag;
-}
-
-bool full_base(vector < pair < vector < pair<int, int> >, int>>& v, vector <int>& base) {
-	bool u1 = false, u2 = false, u3 = false;
-	for (auto i : v) {
-		auto t = i.first;
-		for (auto k : t) {
-			if (k.first == base[0]) u1 = true;
-			if (k.first == base[1]) u2 = true;
-			if (k.first == base[2]) u3 = true;
-		}
-
-	}
-	return u1 && u2 && u3 && v.size() > 8;
-}
-
-bool moreOne(vector < pair<int, int>>& delitels, vector <int>& S) {
-	vector <int> temp_del;
-	int k1 = 0;
-	int k2 = 0;
-	int k3 = 0;
-	for (auto i : delitels) {
-		temp_del.push_back(i.first);
-	}
-	for (auto i : temp_del) {
-		if (k1 < 1) {
-			if (i == S[0]) k1++;
-		}
-		if (k2 < 1) {
-			if (i == S[1]) k2++;
-		}
-		if (k3 < 1) {
-			if (i == S[2]) k3++;
-		}
-	}
-	if (k1 + k2 + k3 > 1) return true;
-	else return false;
-}
-void zad_4_2() {
-	int aa = 2;
-	int p = 30803;
-	int y = 16190;
-	int k = 5000, b = aa, i = 0, t0 = aa % 30803, x = 0;
-	vector <int> S = { 2, 3, 5 };
-	int t = S.size();
-	int e = 1;
-	vector < pair <int, int>> delitels;
-	vector<int> stepeni, ter;
-	vector < pair < vector < pair<int, int> >, int>> equation;
-	for (int k = 15; ; k++) {
-		deliteli(moduleOfStepen(aa, k, p), delitels);
-		if (full_coincidence(S, delitels) && moreOne(delitels, S)) {
-			equation.push_back(make_pair(delitels, k));
-		}
-		delitels.clear();
-		if (full_base(equation, S)) break;
-	}
-	for (auto i : equation)
-		for (auto j : i.first)
-		{
-			cout << j.first << " " << j.second << " " << i.second << endl;
-		}
-	int u1 = 1;
-	int u2 = 16358;
-	int u3 = 21409;
-
-	t0 = y % p;
-	t = 1;
-	b = aa;
-	for (i = 1; i <= 15000; i++) {
-		t = (t * b) % p;
-		t0 = y * t % p;
-		ter = find(t0);
-		if ((ter[ter.size() - 1] <= S[S.size() - 1]) and (ter.size() >= 2)) {
-			break;
-		}
-		ter.clear();
-	}
-	for (auto i : ter) {
-		if (i == 2)
-		{
-			x += u1;
-		}
-		if (i == 3)
-		{
-			x += u2;
-		}
-		if (i == 5)
-		{
-			x += u3;
-		}
-	}
-	x = (x - i) % (p - 1);//?
-	cout << x << endl;
-
-}
+//int mod(int delim, int delit, int stepen) {
+//	int a = 0, a0 = delim % delit;
+//	for (int i = 1; i <= stepen; i++) {
+//		a = delim % delit;
+//		delim = a * a0;
+//	}
+//	return a;
+//}
+//void zad_4() {
+//	// 2^x mod 30803 = 16190
+//	int a = 2, p = 30203, y = 24332, m, k, pom1, pom2, i1, j1, brperem = 0, answer;
+//	m = k = int(sqrt(p)) + 1;
+//	pom1 = y;
+//	for (int j = 1; j < m; j++)
+//	{
+//		pom1 = (pom1 * a) % p; // шаги великана
+//		for (int i = 1; i <= k; i++)
+//		{
+//			pom2 = mod(a, p, i * m); // шаги младенца
+//			if (pom1 == pom2)
+//			{
+//				brperem += 1;
+//				i1 = i;
+//				j1 = j;
+//				break;
+//			}
+//		}
+//		if (brperem != 0)
+//		{
+//			answer = (i1 * m - j1) % (p - 1);
+//			cout << "x = " << answer << endl;
+//			break;
+//		}
+//	}
+//	cout << "Checking: y = " << mod(a, p, answer);
+//}
 
 int main()
 {
@@ -497,5 +351,4 @@ int main()
 	//zad_2();
 	//zad_3();
 	//zad_4();
-	zad_4_2();
 }
