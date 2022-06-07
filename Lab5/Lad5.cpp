@@ -5,9 +5,8 @@
 
 using namespace std;
 
-template <typename T, typename T1>
 
-ostream& operator<< (ostream& os, const map<T, T1>& rusreg) {
+ostream& operator<< (ostream& os, const map<string, string>& rusreg) {
 	for (auto i : rusreg) {
 		os << i.first << " " << i.second << endl;
 	}
