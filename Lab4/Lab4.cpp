@@ -5,11 +5,14 @@
 #include <vector>
 #include <cmath>
 #include <math.h>
-#include  <tgmath.h>
+#include <algorithm>
+#include <locale>
+
 
 using namespace std;
 
-void Task1(double a, double b, int q) {
+void Task1pol(double a, double b, int q)
+{
     double c;
     double d;
     d = b - a;
@@ -20,10 +23,171 @@ void Task1(double a, double b, int q) {
     if (abs(a - b) < 0.0001) cout << "метод половинного деления " << c << endl;
     else {
         q++;
-        if ((2 * a + cos(a)) * ((2 * c) + cos(c)) < 0) Task1(a, c, q);
-        if ((2 * c + cos(c)) * ((2 * b) + cos(b)) < 0) Task1(c, b, q);
+        if ((pow(a, 2) + pow(M_E, a) - 2) * (pow(c, 2) + pow(M_E, c) - 2) < 0) Task1pol(a, c, q);
+        if ((pow(c, 2) + pow(M_E, c) - 2) * (pow(c, b) + pow(M_E, b) - 2) < 0) Task1pol(c, b, q);
+    }
+}
+
+double f(double x) {
+
+    return pow(x, 2) + pow(M_E, x) - 2;
+}
+
+double f1(double x) {
+
+    return 2 * x + pow(M_E, x);
+}
+
+double f2(double x) {
+
+    return   2 + pow(M_E, x);
+}
+
+void Task1nut(double a1, double b1) {
+    double a = a1;
+    double b = b1;
+    double x;
+    double e = 0.0001;
+    int k = 0;
+
+    if (f(a) * f2(a) > 0) {
+        x = a;
+    }
+    else {
+        if (f(b) * f2(b) > 0) {
+            x = b;
+        }
+        else {
+            x = -0.0001;
+        }
+    }
+    k = 0;
+    while (1) {
+        cout << k << " " << round(x) / 10000 << " " << round(x - f(x) / f1(x)) / 10000 << " " << round((x - x - f(x) / f1(x)) * 10000) / 10000 << endl;
+        x = x - f(x) / f1(x);
+        k += 1;
+        if (fabs(f(x)) < e) {
+            break;
+        }
+    }
+    cout.precision(4);
+    cout << "Метод Ньютона " << x << endl;
+}
+
+void Task2()
+{
+    ranlux48_base gen(time(0));
+    
+    cout << "1.исходный массив:" << endl;
+    vector<double> mas;
+    cout << "Введите кол-во элементов массива: ";
+    int n = 0;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        mas.push_back(gen() % 101);
     }
 
+    for (double i : mas)
+    {
+        cout << i << ' ';
+    }
+    cout << endl << endl;
+    cout << "2.среднее значение э-в массива:" << endl;
+    double sum = 0;
+    for (double x : mas)
+    {
+        sum += x;
+    }
+    double sred = sum / n;
+    cout << sred << endl << endl;
+
+    cout << "3.сумма квадратов разности:" << endl;
+    double sumKvadr = 0;
+    for (double x : mas)
+    {
+        sumKvadr += pow((x - sred), 2);
+    }
+    cout << sumKvadr << endl << endl;
+
+    cout << "4.числа с сменёнными разрядами:" << endl;
+    int poz = 0;
+    for (double x : mas)
+    {
+        if ((int)x % 2 == 0 && poz % 2 == 0)
+        {
+            int intX = x;
+            int a = intX % 10;
+            intX = intX / 10;
+            intX = intX + (a * 10);
+            cout << intX << ' ';
+        }
+        poz++;
+    }
+    cout << endl << endl;
+
+    cout << "5.перенос первого числа массива в конец:" << endl;
+    double m = mas[0];
+    mas.erase(mas.cbegin());
+    mas.push_back(m);
+    for (double i : mas)
+    {
+        cout << i << ' ';
+    }
+    cout << endl << endl;
+
+    cout << "6.подсчёт кол-ва конкретных элементов массива и удаление повторяющихся:" << endl;
+    vector<int> mas2;
+    cout << "Введите кол-во элементов массива: ";
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        mas2.push_back((gen() % 21) - 10);
+    }
+    cout << "Исходный массив: " << endl;
+    for (int i : mas2)
+    {
+        cout << i << ' ';
+    }
+    cout << endl << "Кол - во конкретных чисел в массиве: " << endl;
+    map<int, int> countNum;
+    for (int i : mas2)
+    {
+        if (countNum.find(i) != countNum.end())
+        {
+            countNum[i]++;
+        }
+        else
+        {
+            pair<int, int> m = { i,1 };
+            countNum.insert(m);
+        }
+    }
+    for (auto i : countNum)
+    {
+        cout << i.first << " = " << i.second << endl;
+    }
+
+    cout << "Массив после обработки: " << endl;
+    vector <int> mas2_copy;
+    for (int i : mas2)
+    {
+        if (countNum[i] > 1)
+        {
+            countNum[i]--;
+            continue;
+        }
+        else
+        {
+            mas2_copy.push_back(i);
+        }
+    }
+    for (int i : mas2_copy)
+    {
+        cout << i << ' ';
+    }
+}
 
 double XiKvadratCalk(map<double, double> mas)
 {
@@ -54,7 +218,7 @@ double XiKvadratCalk(map<double, double> mas)
     return XiKvadrat;
 }
 
-int Task3()
+void Task3()
 {
     setlocale(LC_ALL, "Rus");
     ranlux48_base gen(time(0));
@@ -131,7 +295,7 @@ int ryd2Gen(int a, int y, int range, int p)
     return genNum;
 }
 
-int Task4()
+void Task4()
 {
     //Шаг младенца шаг великана
     // 2^x mod 30203 = 24322      a^x mod p = y
@@ -214,7 +378,7 @@ int numGen2(int a, int x, int p, int y)
 
 }
 
-int Task5()
+void Task5()
 {
     //Алгоритм исчисления порядка
     setlocale(LC_ALL, "Rus");
@@ -242,4 +406,20 @@ int Task5()
         }
     }
     cout << "Уравнения вида (2^x mod 30203 = 24322) имеет решение при x = " << (DelBazMnog * StepenBazMnog - stepen + 1) % (p - 1) << endl;
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Rus");
+    cout << "Task1:" << endl;
+    Task1pol(-10, 10, 0);
+    Task1nut(0, 1);
+    cout << "Task2:" << endl;
+    Task2();
+    cout << "\nTask3:" << endl;
+    Task3();
+    cout << "Task4:" << endl;
+    Task4();
+    cout << "Task4.1:" << endl;
+    Task5();
 }
