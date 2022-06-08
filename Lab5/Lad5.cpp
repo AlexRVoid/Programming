@@ -133,6 +133,7 @@ void Task1() {
             {
                 f = false;
             }
+            break;
             default:
             {
                 cout << "Invalid comand" << endl;
@@ -190,7 +191,6 @@ void Task2()
 					p.second = it->second;
 					rusreg.erase(it);
 					cout << "Enter the new name of the region: ";
-						cin.ignore();
 						getline(cin, p.first);
 					rusreg.insert(p);
 				}
@@ -210,13 +210,13 @@ void Task2()
 				}
 				if (it != rusreg.end())
 				{
-					cout << it->second;
+					cout << it->second << endl;
 				}
 			}
 			break;
 			case 4:
 			{
-				cout << rusreg;
+				cout << rusreg << endl;
 			}
 			break;
 			case 5:
