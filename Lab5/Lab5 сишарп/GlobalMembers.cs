@@ -3,16 +3,6 @@ using System.Collections.Generic;
 
 public static class GlobalMembers
 {
-	public static ostream operator << <T, T1>(ostream os, SortedDictionary<T, T1> rusreg)
-	{
-		foreach (var i in rusreg)
-		{
-			os << i.first << " " << i.second << "\n";
-		}
-		return os;
-	}
-
-
 	public static SortedDictionary<string, List<string>> set_name(string text, SortedDictionary<string, List<string>> trains)
 	{
 		string s;
@@ -20,14 +10,14 @@ public static class GlobalMembers
 		List<string> v = new List<string>();
 		int i = 0;
 		while (text[i] != ' ')
-		{ // ����� ��������� � ���������� �������
+		{ 
 			n += text[i];
 			i++;
 		}
 		for (i; i < text.Length + 1; i++)
 		{
 			if ((text[i] == ' ') || (text[i] == '\0'))
-			{ // ���������� ���������
+			{ 
 				v.Add(s);
 				s = "";
 				continue;
@@ -40,7 +30,7 @@ public static class GlobalMembers
 		return new SortedDictionary<string, List<string>>(trains);
 	}
 
-	public static void printTown(SortedDictionary<string, List<string>> b, string town)
+	public static void printstop(SortedDictionary<string, List<string>> b, string town)
 	{
 		string trains;
 		int k = 0;
@@ -49,7 +39,7 @@ public static class GlobalMembers
 			foreach (var j in i.second)
 			{
 				if ((town == j))
-				{ //��������� ����� ������� ��������� ��� ���������
+				{ 
 					if (trains == i.first)
 					{
 						continue;
@@ -67,7 +57,7 @@ public static class GlobalMembers
 		}
 	}
 
-	public static void printTrains(SortedDictionary<string, List<string>> b, string trains)
+	public static void printTram(SortedDictionary<string, List<string>> b, string trains)
 	{
 		string town;
 		int k;
@@ -76,9 +66,9 @@ public static class GlobalMembers
 		{
 			if (trains == i.first)
 			{
-				k = 1; // �������� ��������� �� ������ �������
+				k = 1; 
 				foreach (var j in i.second)
-				{ // ��� �������� ����� ��� ������� ��������� ��� ���������
+				{ 
 					if (j != "")
 					{
 						Console.Write(j);
@@ -94,7 +84,7 @@ public static class GlobalMembers
 								continue;
 							}
 							if ((town == z) && (h != i))
-							{ // ��������� �� ���� ����� ������� �������
+							{
 								Console.Write(h.first);
 								Console.Write(" ");
 							}
@@ -168,14 +158,14 @@ public static class GlobalMembers
 				{
 					Console.Write("What stop? ");
 					stop = ConsoleInput.ReadToWhiteSpace(true);
-					printTown(new SortedDictionary<string, List<string>>(mtram), stop);
+					printstop(new SortedDictionary<string, List<string>>(mtram), stop);
 				}
 				break;
 				case 3:
 				{
 					Console.Write("What tram? ");
 					tram = ConsoleInput.ReadToWhiteSpace(true);
-					printTrains(new SortedDictionary<string, List<string>>(mtram), tram);
+					printTram(new SortedDictionary<string, List<string>>(mtram), tram);
 				}
 				break;
 				case 4:
@@ -187,7 +177,7 @@ public static class GlobalMembers
 				{
 					f = false;
 				}
-//C++ TO C# CONVERTER TODO TASK: C# does not allow fall-through from a non-empty 'case':
+
 				default:
 				{
 					Console.Write("Invalid comand");
@@ -283,7 +273,17 @@ public static class GlobalMembers
 				break;
 				case 4:
 				{
-					Console.Write(rusreg);
+					foreach (var i in rusreg)
+					{
+						Console.Write(i.first);
+						Console.Write(" ");
+						foreach (var j in i.second)
+						{
+							Console.Write(j);
+							Console.Write(" ");
+						}
+						Console.Write("\n");
+					}
 				}
 				break;
 				case 5:
