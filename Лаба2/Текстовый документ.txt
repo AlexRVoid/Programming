@@ -1,0 +1,10 @@
+ 
+s (a, b, c) =  2*(a*b+b*c+a*c)
+v (a,b)=a*c*b
+
+main = do
+    a <- readLn
+    b <- readLn
+    c <- readLn
+    print $ s (a,b,c)
+    print $ v (a,b,c)
