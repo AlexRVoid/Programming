@@ -220,7 +220,6 @@ double XiKvadratCalk(map<double, double> mas)
 
 void Task3()
 {
-    setlocale(LC_ALL, "Rus");
     ranlux48_base gen(time(0));
     int n1 = 50, n2 = 100, n3 = 1000;
 
@@ -411,13 +410,13 @@ void Task5()
 int main()
 {
     setlocale(LC_ALL, "Rus");
-    cout << "Task1:" << endl;
+   /* cout << "Task1:" << endl;
     Task1pol(-10, 10, 0);
     Task1nut(0, 1);
     cout << "Task2:" << endl;
-    Task2();
-    cout << "\nTask3:" << endl;
-    Task3();
+    Task2();*/
+    //cout << "\nTask3:" << endl;
+    //Task3();
     cout << "Task4:" << endl;
     Task4();
     cout << "Task4.1:" << endl;
