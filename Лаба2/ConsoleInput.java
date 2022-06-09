@@ -1,11 +1,6 @@
 package tangible;
 
-//----------------------------------------------------------------------------------------
-//	Copyright © 2006 - 2020 Tangible Software Solutions, Inc.
-//	This class can be used by anyone provided that the copyright notice remains intact.
-//
-//	This class provides the ability to convert basic C++ 'cin' behavior.
-//----------------------------------------------------------------------------------------
+
 public final class ConsoleInput
 {
 	private static boolean goodLastRead = false;
