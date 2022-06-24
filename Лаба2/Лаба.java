@@ -1,4 +1,5 @@
-public class Lab2
+import java.util.Scanner;
+public class Лаба
 {
 	/*
 	ЗАДАНИЕ 1.
@@ -19,12 +20,13 @@ public class Lab2
 		int a;
 		int b;
 		int c;
+		Scanner in = new Scanner(System.in);
 		System.out.print("Enter the length:");
-			a = ic.nextInt();;
+			a = in.nextInt();
 		System.out.print("\nEnter the width:");
-			b = b.nextInt();;
+			b = in.nextInt();
 		System.out.print("\nEnter the height:");
-			c = c.nextInt();;
+			c = in.nextInt();
 		int V;
 		int S;
 		S = 2 * (a * b + b * c + a * c);
@@ -35,15 +37,17 @@ public class Lab2
 		System.out.print("V = ");
 		System.out.print(V);
 		System.out.print("\n");
+		in.close();
 	}
 
 	public static void Task2()
 	{
+		Scanner in = new Scanner(System.in);
 		int n; //n - кол-во входящих чисел, s - кол-во подходящих чисел
 		int s;
 		s = 0;
 		System.out.print("Enter the number of items in the selection: ");
-		n = n.nextInt();;
+		n = in.nextInt();;
 		ArrayList<Integer> nums = new ArrayList<Integer>(n); //инициализация массива
 
 		for (int i = 1; i <= n; i++)
@@ -74,16 +78,17 @@ public class Lab2
 		}
 
 		System.out.print(s);
-
+		in.close();
 	}
 
 	public static void Task3()
 	{
+		Scanner in = new Scanner(System.in);
 		while (true)
 		{
 			int num;
 			System.out.print("Enter The number:");
-			num = num.nextInt();;
+			num = in.nextInt();;
 			if (num >= 100 && num < 1000)
 			{ // Провека, является ли число трёхзначным или нет
 				if (num / 100 == num % 10) // Проверка, является ли число полиндромом
@@ -105,20 +110,22 @@ public class Lab2
 			num = 0;
 			boolean res;
 			System.out.print("Continue or not(1/0):");
-			res = res.nextBoolean();
+			res = in.nextBoolean();
 			if (res == false)
 			{
 				break;
 			}
 		}
+		in.close();
 	}
 
 
 	public static int Main()
 	{
+		Scanner in = new Scanner(System.in);
 		int task;
 		System.out.print("Select a task:");
-		task = task.nextInt();
+		task = in.nextInt();
 		if (task == 1)
 		{
 			System.out.print("Task 1:");
@@ -141,6 +148,7 @@ public class Lab2
 		{
 			System.out.print("Invalid value");
 		}
+		in.close();
 		return 0;
 	}
 

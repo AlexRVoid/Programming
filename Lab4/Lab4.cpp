@@ -410,13 +410,13 @@ void Task5()
 int main()
 {
     setlocale(LC_ALL, "Rus");
-   /* cout << "Task1:" << endl;
+    cout << "Task1:" << endl;
     Task1pol(-10, 10, 0);
     Task1nut(0, 1);
     cout << "Task2:" << endl;
-    Task2();*/
-    //cout << "\nTask3:" << endl;
-    //Task3();
+    Task2();
+    cout << "\nTask3:" << endl;
+    Task3();
     cout << "Task4:" << endl;
     Task4();
     cout << "Task4.1:" << endl;

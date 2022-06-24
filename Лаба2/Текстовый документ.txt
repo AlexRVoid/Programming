@@ -1,4 +1,3 @@
- 
 s (a, b, c) =  2*(a*b+b*c+a*c)
 v (a,b)=a*c*b
 
