@@ -33,7 +33,7 @@
               <label for="Password-Input">Пароль</label>
               <input type="password" class="form-control" id="Password-Input" placeholder="Пароль">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" href = "Survey.php">Submit</button>
           </form>
 		  
 		  </div>
