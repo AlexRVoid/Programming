@@ -1,11 +1,3 @@
-<?php
-session_start();
-$nameServer = 'localhost';
-$userName = 'Alex';
-$password = '1111';
-$DBname = '';
-$mysqli = new mysqli($nameServer, $userName, $password, $DBname);
-?>
 
 <head>
 <meta charset="UTF-8">
@@ -50,7 +42,14 @@ $mysqli = new mysqli($nameServer, $userName, $password, $DBname);
 			<button type="submit" class="btn btn-primary">Submit</button>
 			
 		</form>
-		
+		<?php
+error_reporting(0);
+mysqli_report(MYSQLI_REPORT_OFF);
+$mysqli = new mysqli("localhost", "my_user", "my_password", "my_db");
+if ($mysqli->connect_errno) {
+    throw new RuntimeException('ошибка соединения mysqli: ' . $mysqli->connect_error);
+}
+?>
 	
 	</div>
 </body>
