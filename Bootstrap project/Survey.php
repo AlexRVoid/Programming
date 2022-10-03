@@ -32,25 +32,25 @@
 			<div class = "row">
 				<div class = " col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard1">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard1">
 						<label class="form-check-label" for="Hazard1">
 							Падение, поскальзывание, спотыкание, движение по лестнице / Slip, trip, fall
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard2">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard2">
 						<label class="form-check-label" for="Hazard2">
 							Захват, затягивание, выброс предм., удар / Drawing in, trappping, ejection, impact
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard3">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard3">
 						<label class="form-check-label" for="Hazard3">
 							Температура, освещение, шум, вибрация, пыль / Temperature, lighting, noise, vibration, dust
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard4">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard4">
 						<label class="form-check-label" for="Hazard4">
 							Бактерии, вирусы, животные, расстения / Bacteria, viruses, animals, plants
 						</label>
@@ -58,31 +58,31 @@
 				</div>
 				<div class = " col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard5">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard5">
 						<label class="form-check-label" for="Hazard5">
 							Опасные вещества, химикаты / Hazard substraction
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard6">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard6">
 						<label class="form-check-label" for="Hazard6">
 							Электрический ток / Electricity
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard7">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard7">
 						<label class="form-check-label" for="Hazard7">
 							Эргономика, усталость / Ergonomics
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard8">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard8">
 						<label class="form-check-label" for="Hazard8">
 							Пожар / Fire
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Hazard9">
+						<input class="form-check-input" type="checkbox" value="" name="Hazard9">
 						<label class="form-check-label" for="Hazard9">
 							Всё безопасно / All safe
 						</label>
@@ -100,19 +100,19 @@
 			<div class = "row">
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE1">
+						<input class="form-check-input" type="checkbox" value="" name="PPE1">
 						<label class="form-check-label" for="PPE1">
 							Голова / Head
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE2">
+						<input class="form-check-input" type="checkbox" value="" name="PPE2">
 						<label class="form-check-label" for="PPE2">
 							Глаза, лицо / Eyes, face
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE3">
+						<input class="form-check-input" type="checkbox" value="" name="PPE3">
 						<label class="form-check-label" for="PPE3">
 							Органы слуха / Ears
 						</label>
@@ -121,25 +121,25 @@
 					
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE4">
+						<input class="form-check-input" type="checkbox" value="" name="PPE4">
 						<label class="form-check-label" for="PPE4">
 							Кисть, руки, пальцы / Hands, arms, fingers
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE5">
+						<input class="form-check-input" type="checkbox" value="" name="PPE5">
 						<label class="form-check-label" for="PPE5">
 							Тело, защита от падения (в воду) / Body, fall protection, PFD
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE6">
+						<input class="form-check-input" type="checkbox" value="" name="PPE6">
 						<label class="form-check-label" for="PPE6">
 							Ноги / Feet
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="PPE7">
+						<input class="form-check-input" type="checkbox" value="" name="PPE7">
 						<label class="form-check-label" for="PPE7">
 							Всё безопасно / All safe
 						</label>
@@ -157,7 +157,7 @@
 			<div class = "row">
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Tools1">
+						<input class="form-check-input" type="checkbox" value="" name="Tools1">
 						<label class="form-check-label" for="Tools1">
 							Используется неправильно/небезопасно / Used incorrectly/unsafely
 						</label>
@@ -166,13 +166,13 @@
 				
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Tools2">
+						<input class="form-check-input" type="checkbox" value="" name="Tools2">
 						<label class="form-check-label" for="Tools2">
 							В ненадлежащем состоянии или отсутствуют / Unsafe condition or absent
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Tools3">
+						<input class="form-check-input" type="checkbox" value="" name="Tools3">
 						<label class="form-check-label" for="Tools3">
 							Всё безопасно / All safe
 						</label>
@@ -190,13 +190,13 @@
 			<div class = "row">
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Procedures1">
+						<input class="form-check-input" type="checkbox" value="" name="Procedures1">
 						<label class="form-check-label" for="Procedures1">
 							Нет в наличии / Absent
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Procedures2">
+						<input class="form-check-input" type="checkbox" value="" name="Procedures2">
 						<label class="form-check-label" for="Procedures2">
 							Неправильные / Incorrect
 						</label>
@@ -205,19 +205,19 @@
 			
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Procedures3">
+						<input class="form-check-input" type="checkbox" value="" name="Procedures3">
 						<label class="form-check-label" for="Procedures3">
 							Неизвестны / Unknown
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Procedures4">
+						<input class="form-check-input" type="checkbox" value="" name="Procedures4">
 						<label class="form-check-label" for="Procedures4">
 							Не соблюдаются / Not followed
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Procedures5">
+						<input class="form-check-input" type="checkbox" value="" name="Procedures5">
 						<label class="form-check-label" for="Procedures5">
 							Всё безопасно / All safe
 						</label>
@@ -235,7 +235,7 @@
 			<div class = "row">
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Housekeeping1">
+						<input class="form-check-input" type="checkbox" value="" name="Housekeeping1">
 						<label class="form-check-label" for="Housekeeping1">
 							Беспорядок / Untidiness
 						</label>
@@ -244,13 +244,13 @@
 				
 				<div class = "col-md-6" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Housekeeping2">
+						<input class="form-check-input" type="checkbox" value="" name="Housekeeping2">
 						<label class="form-check-label" for="Housekeeping2">
 							Загрязнение окружающей среды / Environmental pollution
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Housekeeping3">
+						<input class="form-check-input" type="checkbox" value="" name="Housekeeping3">
 						<label class="form-check-label" for="Housekeeping3">
 							Всё безопасно / All safe
 						</label>
@@ -268,13 +268,13 @@
 			<div class = "row">
 				<div class = "col-12" style = " background-color: #D3D3D3">
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Action1">
+						<input class="form-check-input" type="checkbox" value="" name="Action1">
 						<label class="form-check-label" for="Action1">
 							Обсудил с исполнителем / Discussed with performer
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="Action2">
+						<input class="form-check-input" type="checkbox" value="" name="Action2">
 						<label class="form-check-label" for="Action2">
 							Исправил опасное условие / Corrected unsafe condition
 						</label>
@@ -292,7 +292,7 @@
 			<div class = "row">
 				<div class = "col-12" style = " background-color: #D3D3D3">
 					<div class = "form-group">
-						<input class="form-control" type="text" id="Positive-observation">
+						<input class="form-control" type="text" name="Positive-observation">
 						<small id="Help" class="form-text text-muted">Положительное наблюдение / Positive observation</small>
 					</div>
 				</div>
@@ -308,7 +308,7 @@
 			<div class = "row">
 				<div class = "col-12" style = " background-color: #D3D3D3">
 					<div class = "form-group">
-						<input class="form-control" type="text" id="Unsafe-act-and-action-taken">
+						<input class="form-control" type="text" name="Unsafe-act-and-action-taken">
 						<small id="Help" class="form-text text-muted">Опасное действие и предпринятые меры / Unsafe act and action taken</small>
 					</div>
 				</div>
@@ -324,7 +324,7 @@
 			<div class = "row">
 				<div class = "col-12" style = " background-color: #D3D3D3">
 					<div class = "form-group">
-						<input class="form-control" type="text" id="Hazard-and-action-taken">
+						<input class="form-control" type="text" name="Hazard-and-action-taken">
 						<small id="Help" class="form-text text-muted">Опасный фактор и предпринятые меры / Hazard and action taken</small>
 					</div>
 				</div>

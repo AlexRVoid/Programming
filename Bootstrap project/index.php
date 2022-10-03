@@ -1,4 +1,4 @@
-
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,26 +31,19 @@
            
 			<div class="form-group">
 			<label for="User">Имя</label>
-			<input type="text" class="form-control" id="User" placeholder="Имя">
+			<input type="text" class="form-control" name="User" placeholder="Имя">
 			</div>
 			
 			<div class="form-group">
 			<label for="Password">Пароль</label>
-			<input type="password" class="form-control" id="Password" placeholder="Пароль">
+			<input type="password" class="form-control" name="Password" placeholder="Пароль">
 			</div>
 		
 			<button type="submit" class="btn btn-primary">Submit</button>
 			
 		</form>
-		<?php
-error_reporting(0);
-mysqli_report(MYSQLI_REPORT_OFF);
-$mysqli = new mysqli("localhost", "my_user", "my_password", "my_db");
-if ($mysqli->connect_errno) {
-    throw new RuntimeException('ошибка соединения mysqli: ' . $mysqli->connect_error);
-}
-?>
-	
+		
 	</div>
-</body>
 	
+</body>
+</html>	
