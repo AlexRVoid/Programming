@@ -36,8 +36,8 @@
 		
 		<?php
 		session_start();
-	
-			$link = new mysqli("localhost", "root", "", "my_db");
+			include 'Config.php';
+			$link = new mysqli($Host, $User, $Password, $Db);
 			
 			echo "<h4>Список опрошенных:</h4>";
 			$sql = "SELECT * FROM survey";

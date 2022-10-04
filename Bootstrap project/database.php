@@ -6,7 +6,8 @@ echo $User;
 echo $Pass;
 $_SESSION["Name"] = $User;
 $_SESSION["Pass"] = $Pass;
-$link = new mysqli("localhost", "root", "", "my_db");
+include 'Config.php';
+$link = new mysqli($Host, $User, $Password, $Db);
 
 if ($link == false){
     print("Ошибка: Невозможно подключиться к MySQL " . mysqli_connect_error());

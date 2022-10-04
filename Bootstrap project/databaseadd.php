@@ -155,8 +155,8 @@ $Hazardandactiontaken = $_POST["Hazard-and-action-taken"];
 
 $date = date('Y-m-d H:i:s');
 
-
-$link = new mysqli("localhost", "root", "", "my_db");
+include 'Config.php';
+$link = new mysqli($Host, $User, $Password, $Db);
 
 if ($link == false){
     print("Ошибка: Невозможно подключиться к MySQL " . mysqli_connect_error());

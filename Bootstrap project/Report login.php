@@ -59,9 +59,7 @@
 		</form>
 		<?php
 		session_start();
-		
-		$password = "1111";
-		$login = "Alex";
+		include 'Config.php';
 		if (isset($_POST["User"]) && isset($_POST["Password"])){
 			$User = $_POST["User"];
 			$Pass = $_POST["Password"];

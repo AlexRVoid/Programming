@@ -37,7 +37,8 @@
 <?php
 if(isset($_GET["id"]))
 {
-    $link = new mysqli("localhost", "root", "", "my_db");
+	include 'Config.php';
+    $link = new mysqli($Host, $User, $Password, $Db);
     if($link->connect_error){
         die("Ошибка: " . $conn->connect_error);
     }
