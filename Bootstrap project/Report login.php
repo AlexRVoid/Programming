@@ -37,11 +37,7 @@
 					</a>
 
 				</li>
-				<li class = "nav-item">
-					<a class="nav-link" href="#">
-						Для администратора
-					</a>
-				</li>
+				
 			</ul>
 		</div>
 		</nav>
