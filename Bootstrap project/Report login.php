@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
 <meta name="description" content="login page">
-<title>Login page</title>
+<title>Report login page</title>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
@@ -27,12 +27,12 @@
 		<div>
 			<ul class = "nav nav-tabs justify-content-end">
 				<li class = "nav-item">
-					<a class="nav-link active" aria-current="page" href="#">
+					<a class="nav-link" aria-current="page" href="index.php">
 						Главная
 					</a>
 				</li>
 				<li class = "nav-item">
-					<a class="nav-link" href="Report login.php">
+					<a class="nav-link active" href="#">
 						Отчёт
 					</a>
 
@@ -46,11 +46,10 @@
 		</div>
 		</nav>
 		
-       
-		<form action = "database.php" method="post">
+		<form action = "" method="post">
            
 			<div class="form-group">
-			<label for="User">Имя</label>
+			<label for="User">Логин</label>
 			<input type="text" class="form-control" name="User" placeholder="Имя">
 			</div>
 			
@@ -62,8 +61,20 @@
 			<button type="submit" class="btn btn-primary">Submit</button>
 			
 		</form>
+		<?php
+		session_start();
 		
+		$password = "1111";
+		$login = "Alex";
+		if (isset($_POST["User"]) && isset($_POST["Password"])){
+			$User = $_POST["User"];
+			$Pass = $_POST["Password"];
+			if ($Pass == $password && $User == $login) {
+				echo "Пароль верный";
+				header('Location: Report.php');
+			}else echo "Неверный логин или пароль";
+		}
+		?>
 	</div>
-	
 </body>
 </html>	

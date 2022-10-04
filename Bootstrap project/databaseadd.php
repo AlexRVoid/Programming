@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+$Name = $_SESSION["Name"];
+$Pass = $_SESSION["Pass"];
+echo $Name;
+echo $Pass;
 
 $Hazard1 = "0";
 $Hazard2 = "0";
@@ -43,6 +49,7 @@ $Hazardandactiontaken = "0";
 
 if (isset($_POST["Hazard1"])){
 $Hazard1 = $_POST["Hazard1"];
+echo $Hazard1;
 }
 if (isset($_POST["Hazard2"])){
 $Hazard2 = $_POST["Hazard2"];
@@ -50,7 +57,7 @@ $Hazard2 = $_POST["Hazard2"];
 if (isset($_POST["Hazard3"])){
 $Hazard3 = $_POST["Hazard3"];
 }
-if (isset($_POST["Hazard3"])){
+if (isset($_POST["Hazard4"])){
 $Hazard4 = $_POST["Hazard4"];
 }
 if (isset($_POST["Hazard5"])){
@@ -146,20 +153,22 @@ if (isset($_POST["Hazard-and-action-taken"])){
 $Hazardandactiontaken = $_POST["Hazard-and-action-taken"];
 }
 
+$date = date('Y-m-d H:i:s');
+
 
 $link = new mysqli("localhost", "root", "", "my_db");
 
 if ($link == false){
     print("Ошибка: Невозможно подключиться к MySQL " . mysqli_connect_error());
 }else{
-	$insertdb = "INSERT INTO survey (
+	$insertdb = "INSERT INTO survey (Date, Name, Pass, 
 		Hazard1, Hazard2, Hazard3, Hazard4, Hazard5, Hazard6, Hazard7, Hazard8, Hazard9,
 		PPE1, PPE2, PPE3, PPE4, PPE5, PPE6, PPE7,
 		Tools1, Tools2, Tools3,
 		Procedures1, Procedures2, Procedures3, Procedures4, Procedures5,
 		Housekeeping1, Housekeeping2, Housekeeping3,
 		Action1, Action2,
-		Positiveobservation, Unsafeactandactiontaken, Hazardandactiontaken) VALUES ( 
+		Positiveobservation, Unsafeactandactiontaken, Hazardandactiontaken) VALUES ('$date', '$Name', '$Pass', 
 		'$Hazard1', '$Hazard2', '$Hazard3', '$Hazard4', '$Hazard5', '$Hazard6', '$Hazard7', '$Hazard8', '$Hazard9',
 		'$PPE1', '$PPE2', '$PPE3', '$PPE4', '$PPE5', '$PPE6', '$PPE7',
 		'$Tools1', '$Tools2', '$Tools3',
@@ -169,6 +178,8 @@ if ($link == false){
 		'$Positiveobservation', '$Unsafeactandactiontaken', '$Hazardandactiontaken')";
 	if ($link->query($insertdb)){
 		echo "Данные успешно добавлены";
+		$link->close();
+		header ('Location: index.php');
 	} else{
 		echo "Ошибка: " . $link->error;
 	}
