@@ -1,0 +1,98 @@
+// Example program
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+struct Marks {
+    int rgr;
+    int lab1;
+    int lab2;
+    int fail;
+};
+
+struct Parametrs {
+    double x;
+    double y;
+    double z;
+};
+
+
+class FunctionPart {
+public:
+    FunctionPart(char s, double n) {
+        sign1 = s;
+        number = n;
+    }
+    double Evaluate(double n) {
+        if (sign1 == '+') {
+            return n + number;
+        } else {
+            return n - number;
+        }
+    }
+    void Transformation() {
+        if (sign1 == '+') {
+            sign1 = '-';
+        } else {
+            sign1 = '+';
+        }
+    }
+    
+private:
+	char sign1;
+	double number;
+};
+
+class Function{
+public:
+   void Add(char s, double n) {
+	 function.push_back({s, n});
+   }
+   double EvaluateFunction(double num) {
+       for (auto item : function) {
+           num = item.Evaluate(num);
+       }
+       return num;  
+   }
+   void TransformationFunction() {
+       for (auto& item : function) {
+           item.Transformation();
+       }
+   }
+
+
+private:
+	vector<FunctionPart> function;
+
+};
+
+Function EvaluateF(Marks m, Parametrs p) {
+    Function f;
+    f.Add('+', m.lab1 * p.x);
+    f.Add('+', m.lab2 * p.y);
+    f.Add('-', m.fail * p.z);
+    return f; 
+}
+double evaluateStudentR(Marks m, Parametrs p) {
+    Function f = EvaluateF(m, p);
+    double res = f.EvaluateFunction(m.rgr);
+    return res;
+}
+
+double evaluateStudentRgr(double result, Marks m, Parametrs p) {
+    Function f = EvaluateF(m, p);
+    f.TransformationFunction();
+    double res = f.EvaluateFunction(result);
+    return res;
+}
+
+
+
+int main()
+{
+    Marks m{8, 9, 10, 2};
+    Parametrs p{0.1, 0.2, 0.7};
+    cout << evaluateStudentR(m,p);
+   double res = evaluateStudentR(m, p);
+   cout << " " << evaluateStudentRgr(res, m, p);
+ }
