@@ -1,0 +1,106 @@
+// Example program
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Food {
+public:
+    int satiety = 0;
+    string kindofFood = "";
+};
+
+struct AngryHuman : public Food {
+    AngryHuman() {
+        satiety = 200;
+        kindofFood = "AngryHuman";
+    }    
+};
+
+struct EyesApple : public Food {
+    EyesApple() {
+        satiety = 50;
+        kindofFood = "EyesApple";
+    } 
+};
+
+struct Onion : public Food {
+    Onion() {
+        satiety = 40;
+        kindofFood = "Onion";
+    } 
+};
+
+struct Snail : public Food {
+     Snail() {
+        satiety = 50;
+        kindofFood = "Snail";
+    } 
+};
+struct Burger : public Food {
+     Burger() {
+        satiety = 100;
+        kindofFood = "Burger";
+    } 
+};
+class MultHeroes {
+    public:
+    MultHeroes(const string& s) : typeHeroes(s) {}
+    void Eating(Food& f) {
+      cout << typeHeroes << " happy than he eats " << f.kindofFood <<  " and has " << f.satiety << endl;
+  }
+  virtual void Hobby() const = 0;
+  //{
+      cout << "no hobby" << endl;
+  }*/
+  const string typeHeroes = "";
+
+};
+
+class Ogr  : public MultHeroes {
+  public:
+  Ogr() : MultHeroes("Ogr") {      
+  }  
+  void Hobby() {
+        cout << "scare people" << endl;
+    }
+};
+
+
+class Donkey : public MultHeroes{ 
+    public:
+    Donkey() : MultHeroes("Donkey") {
+    }     
+    void Hobby() const override  {
+        cout << "It's my life !" << endl;
+    }
+};
+class Human : public MultHeroes{
+public:
+    Human(const string& s) : MultHeroes("Human"), name(s) {}
+    string name = "";
+    void Hobby() {
+        cout << "AVE " << name << endl;
+    }
+    
+};
+void HeroesEat(MultHeroes& o, Food& f) {
+    o.Eating(f);
+   // o.typeHeroes = "bebebebe";
+}
+void Hobby(MultHeroes& o) {
+    o.Hobby();
+}
+
+int main()
+{
+    Ogr Shreck;
+    AngryHuman a;
+    Burger b;
+    Donkey d;
+    Human f("Farkuad");
+    Hobby(Shreck);
+    Hobby(d);
+    Hobby(f);
+    
+ }
