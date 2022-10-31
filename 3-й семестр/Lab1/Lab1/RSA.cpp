@@ -1,4 +1,3 @@
-#include <math.h>
 #include "Class_for_crypto_algorithm.h"
 
 using namespace std;
@@ -13,12 +12,10 @@ bool CheckingForSimplicity(const int& p, const int& q, const int& e)
 	else return false;
 }
 
-void EncryptRSA()
+void EncryptRSA(const vector <int>& stext)
 {
-	SourseText soursetext;
-	EncryptionText ersa;
 	RSA rsa;
-	
+
 	system("cls");
 	cout << "=========================RSA" << endl;
 	int t;
@@ -31,30 +28,23 @@ void EncryptRSA()
 	rsa.Na = rsa.Getp() * rsa.Getq();
 
 	srand(time(NULL));
-	int n = rand() + 1000;// Генерация экспоненты взаимнопростой с (p-1)*(q-1)
+	int n = rand() % 10000 + 100;// Генерация экспоненты взаимнопростой с (p-1)*(q-1)
 
-	while (1)
-	{
-		if (CheckingForSimplicity(rsa.Getp(), rsa.Getq(), n) == true)
-		{
-			rsa.n = n;
-			break;
-		}
-		else {
-			n--;
-		}
+	rsa.GenOpenKey(n);
+	cout << "Open key: " << rsa.o_key << endl;
 
-	}
-	cout << "e = " << rsa.n;
+	rsa.GenPrivateKey();
 
-	for (auto i : soursetext.soursetext)
-	{
-		int enc = soursetext.soursetext[i];
-		for (int k = 0; k < (rsa.n - 1); k++)
-		{
-			enc *= soursetext.soursetext[i]  % rsa.Na;
-		}
-		ersa.encrypttext.push_back(enc);
-	}
-	copy(ersa.encrypttext.begin(), ersa.encrypttext.end(), ostream_iterator<int>(cout, " "));
+
+	rsa.EncryptText(stext);
+	cout << "Your encrypted text: " << endl;
+	rsa.GetEncryptText();
+
+
+	cout << endl;
+
+
+	rsa.DecryptText();
+	cout << "Your decrypted text: " << endl;
+	rsa.GetDecryptText();
 }

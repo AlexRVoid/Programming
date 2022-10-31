@@ -127,9 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DH.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RSA.cpp" />
-    <ClCompile Include="TransformText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class_for_crypto_algorithm.h" />

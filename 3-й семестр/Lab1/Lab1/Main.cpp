@@ -5,20 +5,20 @@ using namespace std;
 int main()
 {
 	SourseText soursetext;
-	vector <int> sourcetext;
-	int num;
+	string num;
 	string stext;
 
 	cout << "Enter the source text: " << endl;
 	//cin.ignore();
 	getline(cin, stext);
 
+	system("cls");
 	cout << "Text:\n" << stext << endl;
-	
-	TransformText(stext);
+
+	soursetext.SetSourseElement(stext);
 
 	cout << "Transform text: " << endl;
-	copy(soursetext.soursetext.begin(), soursetext.soursetext.end(), ostream_iterator<int>(cout, " "));
+	soursetext.GetSourseText();
 
 	cout << endl;
 	system("pause");
@@ -26,9 +26,12 @@ int main()
 
 	cout << "Choose an encryption algorithm:" << endl;
 	cin >> num;
-	switch (num)
-		case 1:
-			EncryptRSA();
-
-	
+	if (num == "1")
+	{
+		EncryptRSA(soursetext.GetTextForEncrypt());
+	}
+	if (num == "2")
+	{
+		EncryptDH(soursetext.GetTextForEncrypt());
+	}
 }
