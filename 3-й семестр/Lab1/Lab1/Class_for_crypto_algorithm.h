@@ -185,8 +185,21 @@ private:
 class ElGam
 {
 public:
-
+	int p;
+	int g;
+	int Y;
+	int A;
+	int B;
+	int k;
+	int M;
+	int GetX() {
+		return X;
+	}
+	void SetX(int inpX) {
+		X = inpX;
+	}
 private:
+	int X;
 
 };
 
