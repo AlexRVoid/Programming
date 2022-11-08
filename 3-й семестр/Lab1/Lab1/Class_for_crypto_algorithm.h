@@ -66,17 +66,6 @@ public:
 
 	void EncryptText(const vector <int>& stext)// шифровка текста
 	{
-		/*for (int i = 0; i < stext.size(); i++)
-		{
-			int e_element;
-			e_element = stext[i];
-			for (int k = 0; k < (o_key - 1); k++)
-			{
-				e_element = e_element * stext[i] % Na;
-			}
-			encrypttext.push_back(e_element);
-		}*/
-
 		for (int i = 0; i < stext.size(); i++)
 		{
 			long int current, result;
@@ -185,22 +174,78 @@ private:
 class ElGam
 {
 public:
-	int p;
-	int g;
-	int Y;
-	int A;
-	int B;
-	int k;
-	int M;
-	int GetX() {
-		return X;
-	}
-	void SetX(int inpX) {
-		X = inpX;
-	}
-private:
-	int X;
+	int p, g, y;
 
+
+	ElGam(int a, int b, int d) {
+		p = a; g = b; y = 1; p_key = d;
+	}
+
+
+	void GenKey()
+	{
+		for (int i = 0; i < p_key; i++) {
+			y *= g;
+			y %= p;
+		}
+	}
+	void EncryptText(const vector <int>& stext)
+	{
+		int s_key;
+		pair <int, int> encel;
+		int a = 1, b = 1;
+		srand(time(NULL));
+		s_key = rand() % (p - 2) + 1;
+
+		for (int i = 0; i < stext.size(); i++) {
+			for (int i = 0; i < s_key; i++) {
+				a *= g;
+				a %= p;
+			}
+			for (int i = 0; i < s_key; i++) {
+				b *= p_key;
+				b %= p;
+			}
+			b = (stext[i] * b) % p;
+			encel.first = a;
+			encel.second = b;
+			encrypttext.push_back(encel);
+		}
+	}
+	void DecryptText()
+	{
+		int decel = 1;
+		for (int i = 0; i < encrypttext.size(); i++)
+		{
+			for (int t = 0; t < (p-1-p_key); t++) {
+				decel *= encrypttext[i].first;
+				decel %= p;
+			}
+			decel = (encrypttext[i].second * decel) % p;
+			decrypttext.push_back(decel);
+		}
+	}
+
+	void GetEncryptText()
+	{
+		for (int i = 0; i < encrypttext.size(); i++)
+		{
+			cout << encrypttext[i].first << " " << encrypttext[i].second << "  ";
+		}
+	}
+
+	void GetDecryptText()
+	{
+		for (int i = 0; i < decrypttext.size(); i++)
+		{
+			cout << decrypttext[i] << " ";
+		}
+	}
+
+private:
+	int p_key;//x
+	vector <pair<int, int>> encrypttext;
+	vector <int> decrypttext;
 };
 
 class SourseText
@@ -229,4 +274,5 @@ public:
 
 void EncryptRSA(const vector <int>& stext);
 void EncryptDH(const vector <int>& stext);
+void EncryptElGam(const vector <int>& stext);
 bool CheckingForSimplicity(const int& p, const int& q, const int& e);

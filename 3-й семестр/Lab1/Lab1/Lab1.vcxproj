@@ -128,8 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DH.cpp" />
+    <ClCompile Include="ElGam.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="RSA.cpp" />
+    <ClCompile Include="SH.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class_for_crypto_algorithm.h" />

@@ -34,4 +34,8 @@ int main()
 	{
 		EncryptDH(soursetext.GetTextForEncrypt());
 	}
+	if (num == "3")
+	{
+		EncryptElGam(soursetext.GetTextForEncrypt());
+	}
 }
