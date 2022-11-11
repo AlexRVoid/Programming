@@ -2,16 +2,6 @@
 
 using namespace std;
 
-
-bool CheckingForSimplicity(const int& p, const int& q, const int& e)
-{
-	if (e % ((p - 1) * (q - 1)) == 1)
-	{
-		return true;
-	}
-	else return false;
-}
-
 void EncryptRSA(const vector <int>& stext)
 {
 	RSA rsa;

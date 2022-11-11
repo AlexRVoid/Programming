@@ -166,64 +166,75 @@ private:
 class SH
 {
 public:
+	int p, x1, x2;
+
+	SH(int a) {
+		p = a; Ca = 0; Cb = 0; da = 0; db = 0, x1 = 0; x2 = 0;
+	}
+
+
+
+	const int GetCa() {
+		return Ca;
+	}
+
+	const int GetCb() {
+		return Cb;
+	}
+
+	void SetCa(const int& a) {
+		Ca = a;
+	}
+
+	void SetCb(const int& b) {
+		Cb = b;
+	}
+
+	const int Getda() {
+		return da;
+	}
+
+	const int Getdb() {
+		return db;
+	}
+
+	void Setda(const int& a) {
+		da = a;
+	}
+
+	void Setdb(const int& b) {
+		db = b;
+	}
 
 private:
-
+	int Ca, Cb, da, db;
 };
 
 class ElGam
 {
 public:
-	int p, g, y;
-
+	int p, g, y, k, decel;
+	pair <int, int> encrel;
+	vector <pair<int, int>> encrypttext;
+	vector <int> decrypttext;
 
 	ElGam(int a, int b, int d) {
-		p = a; g = b; y = 1; p_key = d;
+		p = a; g = b; y = 1; p_key = d; decel = 1; k = 10;
 	}
 
-
-	void GenKey()
+	int GetPKey()
 	{
-		for (int i = 0; i < p_key; i++) {
-			y *= g;
-			y %= p;
-		}
+		return p_key;
 	}
-	void EncryptText(const vector <int>& stext)
-	{
-		int s_key;
-		pair <int, int> encel;
-		int a = 1, b = 1;
-		srand(time(NULL));
-		s_key = rand() % (p - 2) + 1;
 
-		for (int i = 0; i < stext.size(); i++) {
-			for (int i = 0; i < s_key; i++) {
-				a *= g;
-				a %= p;
-			}
-			for (int i = 0; i < s_key; i++) {
-				b *= p_key;
-				b %= p;
-			}
-			b = (stext[i] * b) % p;
-			encel.first = a;
-			encel.second = b;
-			encrypttext.push_back(encel);
-		}
-	}
-	void DecryptText()
+	void GenKey(int a, int x, int m)
 	{
-		int decel = 1;
-		for (int i = 0; i < encrypttext.size(); i++)
-		{
-			for (int t = 0; t < (p-1-p_key); t++) {
-				decel *= encrypttext[i].first;
-				decel %= p;
-			}
-			decel = (encrypttext[i].second * decel) % p;
-			decrypttext.push_back(decel);
+		y = 1;
+		for (int i = 0; i < x; i++) {
+			y *= a;
+			y %= m;
 		}
+		cout << "y = " << y << endl;
 	}
 
 	void GetEncryptText()
@@ -244,8 +255,34 @@ public:
 
 private:
 	int p_key;//x
-	vector <pair<int, int>> encrypttext;
-	vector <int> decrypttext;
+};
+
+class EG {
+public:
+	int p, g, k, Da, Db, e, r, m;
+
+	EG(int a, int b, int c) {
+		p = a; g = b; k = c, Ca = 0; Cb = 0; Da = 0; Db = 0; e = 0; r = 0; m = 0;
+	}
+
+	const int GetCa() {
+		return Ca;
+	}
+
+	const int GetCb() {
+		return Cb;
+	}
+
+	void SetCa(const int& a) {
+		Ca = a;
+	}
+
+	void SetCb(const int& b) {
+		Cb = b;
+	}
+
+private:
+	int Ca, Cb;
 };
 
 class SourseText
@@ -275,4 +312,5 @@ public:
 void EncryptRSA(const vector <int>& stext);
 void EncryptDH(const vector <int>& stext);
 void EncryptElGam(const vector <int>& stext);
-bool CheckingForSimplicity(const int& p, const int& q, const int& e);
+void EncryptSH(const vector <int>& stext);
+int ost(int a, int x, int m);

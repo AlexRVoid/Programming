@@ -38,4 +38,8 @@ int main()
 	{
 		EncryptElGam(soursetext.GetTextForEncrypt());
 	}
+	if (num == "4")
+	{
+		EncryptSH(soursetext.GetTextForEncrypt());
+	}
 }
