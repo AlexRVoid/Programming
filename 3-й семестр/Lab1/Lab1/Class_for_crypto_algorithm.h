@@ -101,7 +101,6 @@ public:
 			}
 
 			decrypttext.push_back(result + 97);
-			cout << decrypttext[i] << endl;
 		}
 	}
 
@@ -166,48 +165,38 @@ private:
 class SH
 {
 public:
-	int p, x1, x2;
+	int p;
+	vector <int> x1;
+	vector <int> x2;
+
 
 	SH(int a) {
-		p = a; Ca = 0; Cb = 0; da = 0; db = 0, x1 = 0; x2 = 0;
+		p = a; Ca = 0; da = 0;
 	}
 
 
 
-	const int GetCa() {
+	int GetCa() {
 		return Ca;
 	}
 
-	const int GetCb() {
-		return Cb;
-	}
 
 	void SetCa(const int& a) {
 		Ca = a;
 	}
 
-	void SetCb(const int& b) {
-		Cb = b;
-	}
-
-	const int Getda() {
+	int Getda() {
 		return da;
 	}
 
-	const int Getdb() {
-		return db;
-	}
 
 	void Setda(const int& a) {
 		da = a;
 	}
 
-	void Setdb(const int& b) {
-		db = b;
-	}
 
 private:
-	int Ca, Cb, da, db;
+	int Ca, da;
 };
 
 class ElGam
@@ -265,11 +254,11 @@ public:
 		p = a; g = b; k = c, Ca = 0; Cb = 0; Da = 0; Db = 0; e = 0; r = 0; m = 0;
 	}
 
-	const int GetCa() {
+	int GetCa() {
 		return Ca;
 	}
 
-	const int GetCb() {
+	int GetCb() {
 		return Cb;
 	}
 

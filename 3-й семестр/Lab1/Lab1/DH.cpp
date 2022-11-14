@@ -7,6 +7,9 @@ void EncryptDH(const vector <int>& stext)
 	DH dha;
 	DH dhb;
 
+	system("cls");
+	cout << "=========================Diffie-Hellman" << endl;
+
 	string choice;
 
 	srand(time(NULL));
@@ -59,5 +62,7 @@ void EncryptDH(const vector <int>& stext)
 	dha.SetXkey(a, dhb.ya);
 
 	dhb.SetXkey(b, dha.ya);
+
+	system("pause");
 
 }

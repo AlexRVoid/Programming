@@ -37,4 +37,6 @@ void EncryptRSA(const vector <int>& stext)
 	rsa.DecryptText();
 	cout << "Your decrypted text: " << endl;
 	rsa.GetDecryptText();
+
+	system("pause");
 }

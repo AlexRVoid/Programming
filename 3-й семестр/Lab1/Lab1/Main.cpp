@@ -2,6 +2,15 @@
 
 using namespace std;
 
+int ost(int a, int x, int p) {
+	int res = 1;
+	for (int i = 0; i < x; i++) {
+		res *= a;
+		res %= p;
+	}
+	return res;
+}
+
 int main()
 {
 	SourseText soursetext;
@@ -22,24 +31,44 @@ int main()
 
 	cout << endl;
 	system("pause");
-	system("cls");
+	
 
-	cout << "Choose an encryption algorithm:" << endl;
-	cin >> num;
-	if (num == "1")
+	
+	
+
+	while (true)
 	{
-		EncryptRSA(soursetext.GetTextForEncrypt());
-	}
-	if (num == "2")
-	{
-		EncryptDH(soursetext.GetTextForEncrypt());
-	}
-	if (num == "3")
-	{
-		EncryptElGam(soursetext.GetTextForEncrypt());
-	}
-	if (num == "4")
-	{
-		EncryptSH(soursetext.GetTextForEncrypt());
+		system("cls");
+		cout << "1.RSA \n" << "2.Diffie-Hellman \n" << "3.ElGamal \n" << "4.Shamir \n" << "5.Exit" << endl;
+
+		cout << "Choose an encryption algorithm:" << endl;
+			cin >> num;
+		if (num == "1")
+		{
+			EncryptRSA(soursetext.GetTextForEncrypt());
+		}
+		else if (num == "2")
+		{
+			EncryptDH(soursetext.GetTextForEncrypt());
+		}
+		else if (num == "3")
+		{
+			EncryptElGam(soursetext.GetTextForEncrypt());
+		}
+		else if (num == "4")
+		{
+			EncryptSH(soursetext.GetTextForEncrypt());
+		}
+		else if (num == "5")
+		{
+			system("cls");
+			return 0;
+		}
+
+		else {
+			system("cls");
+			cout << "Invalid number\n" << "Try again" << endl;
+			system("pause");
+		}
 	}
 }
