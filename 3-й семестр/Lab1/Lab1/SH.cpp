@@ -21,7 +21,7 @@ int GenSecondKey(const int& ca, const int& p)
     int da = rand() % (p - 1);
     while (true) {
         if (da > 0) {
-            if ((ca * da) % (p - 1))
+            if ((ca * da) % (p - 1) == 1)  
             {
                 return da;
             }else da -= 1;

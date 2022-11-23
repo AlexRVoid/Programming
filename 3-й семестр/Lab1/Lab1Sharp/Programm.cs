@@ -61,7 +61,7 @@ namespace Programm
                         break;
                     }
                 }
-                Console.WriteLine("Private key: {p_key}\n");
+                Console.WriteLine("Private key: {0}\n", p_key);
             }
 
             public void EncryptText(List<int> stext)// шифровка текста
@@ -107,7 +107,7 @@ namespace Programm
             {
                 for (int i = 0; i < encrypttext.Count(); i++)
                 {
-                    Console.WriteLine("{encrypttext[i]} ");
+                    Console.WriteLine("{0} ", encrypttext[i]);
                 }
             }
 
@@ -115,7 +115,7 @@ namespace Programm
             {
                 for (int i = 0; i < decrypttext.Count(); i++)
                 {
-                    Console.WriteLine("{decrypttext[i]} ");
+                    Console.WriteLine("{0} ", decrypttext[i]);
                 }
             }
 
@@ -143,7 +143,7 @@ namespace Programm
                 {
                     ya = ya * g % p;
                 }
-                Console.WriteLine("{Name}`s Public Key: {ya}\n");
+                Console.WriteLine("{0}`s Public Key: {1}\n", Name, ya);
             }
 
             public void SetXKey(int t, int p_key)
@@ -153,14 +153,14 @@ namespace Programm
                 {
                     xa = xa * p_key % p;
                 }
-                Console.WriteLine("{Name}`s Private Key: {ya}\n");
+                Console.WriteLine("{0}`s Private Key: {1}\n", Name, ya);
             }
             private int xa;
         }
 
         class SH
         {
-            int p;
+            public int p;
             public List<int> x1 = new List<int>();
             public List<int> x2 = new List<int>();
 
@@ -215,14 +215,14 @@ namespace Programm
                     y *= a;
                     y %= m;
                 }
-                Console.WriteLine("y= {y}\n");
+                Console.WriteLine("y= {0}\n", y);
             }
 
             public void GetEncryptText()
             {
                 for (int i = 0; i < encrypttext.Count; i++)
                 {
-                    Console.WriteLine(encrypttext[i]);
+                    Console.Write("{0} ", encrypttext[i]);
                 }
             }
 
@@ -230,44 +230,11 @@ namespace Programm
             {
                 for (int i = 0; i < decrypttext.Count; i++)
                 {
-                    Console.WriteLine(decrypttext[i]);
+                    Console.Write("{0} ", decrypttext[i]);
                 }
             }
 
             private int p_key;
-        }
-
-        class EG
-        {
-            public int p, g, k, Da, Db, e, r, m;
-
-            public EG(int a, int b, int c)
-            {
-                p = a; g = b; k = c; Ca = 0; Cb = 0; Da = 0; Db = 0; e = 0; r = 0; m = 0;
-            }
-
-            public int GetCa()
-            {
-                return Ca;
-            }
-
-            public int GetCb()
-            {
-                return Cb;
-            }
-
-            public void SetCa(int a)
-            {
-                Ca = a;
-            }
-
-            public void SetCb(int b)
-            {
-                Cb = b;
-            }
-
-
-            private int Ca, Cb;
         }
 
         class SourseText
@@ -286,28 +253,303 @@ namespace Programm
             {
                 for (int i = 0; i < soursetext.Count; i++)
                 {
-                    Console.WriteLine(soursetext[i]);
+                    Console.Write(" {0}",soursetext[i]);
                 }
             }
-            public List<int> GetTextForEncrypt()
+        }
+
+        void EncryptRSA(ref List<int> text)
+        {
+            RSA rsa = new();
+            Random rnd = new Random();
+            
+            Console.Clear();
+            Console.WriteLine("=========================RSA");
+
+            Console.Write("Select the number p: ");
+                rsa.Setp(Convert.ToInt32(Console.ReadLine()));
+
+            Console.Write("Select the number q: ");
+                rsa.Setq(Convert.ToInt32(Console.ReadLine()));
+
+            rsa.Na = rsa.Getp() * rsa.Getq();
+
+            rsa.GenOpenKey(rnd.Next(100, 10000));
+            Console.WriteLine("Open key: {0}", rsa.o_key);
+
+            rsa.GenPrivateKey();
+
+            rsa.EncryptText(text);
+            Console.WriteLine("Your encrypted text:");
+            rsa.GetEncryptText();
+
+            rsa.DecryptText();
+            Console.WriteLine("Your decrypted text:");
+            rsa.GetDecryptText();
+
+            Console.ReadKey();
+        }
+
+        
+        void EncryptDH()
+        {
+            DH dha = new DH();
+            DH dhb = new DH();
+            Random rnd = new Random();
+
+            dha.Name = "Alice";
+            dhb.Name = "Bob";
+
+            while (true)
             {
-                return soursetext;
+                Console.Clear();
+                Console.WriteLine("=========================Diffie-Hellman");
+                string choice;
+                Console.WriteLine("Enter numbers manually or automatically? (m / a)");
+                choice = Console.ReadLine();
+
+                if (choice == "m")
+                {
+                    Console.Write("Enter g: ");
+                    dha.g = Convert.ToInt32(Console.ReadLine());
+                    dhb.g = dha.g;
+                    Console.Write("Enter p: ");
+                    dha.p = Convert.ToInt32(Console.ReadLine());
+                    dhb.p = dha.p;
+                    Console.WriteLine("Your numbers are: {0} {1}", dha.g, dha.p);
+                    break;
+                }
+                else if (choice == "a")
+                {
+                    dha.g = rnd.Next(100, 10000);
+                    dhb.g = dha.g;
+                    dha.p = rnd.Next(100, 10000);
+                    dhb.p = dha.p;
+                    Console.WriteLine("Your numbers are: {0} {1}", dha.g, dha.p);
+                    break;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Incorrect data, try again");
+                    Console.ReadKey();
+                    continue;
+                }
+            }
+            Console.Write("Come up with a secret number for Alice: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            dha.SetYKey(a);
+
+            Console.Write("Come up with a secret number for Bob: ");
+            int b = Convert.ToInt32(Console.ReadLine());
+            dhb.SetYKey(b);
+
+            dha.SetXKey(a, dhb.ya);
+
+            dhb.SetXKey(b, dha.ya);
+
+            Console.ReadKey();
+        }
+
+        int ost (int a, int x, int p)
+        {
+            int res = 1;
+            for (int i = 0; i < x; i++)
+            {
+                res *= a;
+                res %= p;
+            }
+            return res;
+        }
+
+        void EncryptElGam(ref List<int> text)
+        {
+            ElGam elgam = new ElGam(593, 123, 8);
+
+            Console.Clear();
+            Console.WriteLine("=========================ElGamal");
+
+            for (int i = 0; i < text.Count; i++) //encrypt
+            {
+                int encelfist = 0, encelsecond = 0;
+
+                encelfist = ost(elgam.g, elgam.k, elgam.p);
+                encelsecond = ost(elgam.y, elgam.k, elgam.p);
+                encelsecond = (encelsecond * text[i]) % elgam.p;
+
+                elgam.encrel = new Tuple<int, int> (encelfist, encelsecond);
+                elgam.encrypttext.Add(elgam.encrel);
+            }
+
+            for (int i = 0; i < elgam.encrypttext.Count; i++) //decrypt
+            {
+                elgam.decel = ost(elgam.encrypttext[i].Item1, elgam.p - 1 - elgam.GetPKey(), elgam.p);
+                elgam.decel = elgam.decel * elgam.encrypttext[i].Item2 % elgam.p;
+
+                elgam.decrypttext.Add(elgam.decel);
+            }
+
+            Console.Write("Your encrypted text: ");
+            elgam.GetEncryptText();
+
+            Console.WriteLine();
+
+            Console.Write("Your decrypted text: ");
+            elgam.GetDecryptText();
+
+            Console.ReadKey();
+        }
+
+        int GenFirstKey(int p)
+        {
+            Random rnd = new Random();
+            int ca = rnd.Next(1000, (p - 1));
+            while (true)
+            {
+                if (ca > 0)
+                {
+                    if (ca % (p - 1) == 1)
+                    {
+                        return ca;
+                    }
+                    else ca -= 1;
+                }
+                else ca += (p - 1);
             }
 
         }
 
-        static void Main(string[] args)
+        int GenSecondKey(int ca, int p)
         {
+            Random rnd = new Random();
+            int da = rnd.Next(1000, (p - 1));
+            while (true)
+            {
+                if (da > 0)
+                {
+                    if ((ca * da) % (p - 1) == 1)
+                    {
+                        return da;
+                    }
+                    else da -= 1;
+                }
+                else da += (p - 1);
+            }
+        }
+        void EncryptSH(ref List<int> text)
+        {
+            Console.Clear();
+            Console.WriteLine("=========================Shamir");
+            Random rnd = new Random();
+
+            int p = rnd.Next(1000, 10000);
+            SH ash = new SH(p);
+            SH bsh = new SH(p);
+
+            ash.SetCa(GenFirstKey(ash.p));
+            ash.Setda(GenSecondKey(ash.GetCa(), ash.p));
+
+            bsh.SetCa(GenFirstKey(bsh.p));
+            bsh.Setda(GenSecondKey(bsh.GetCa(), bsh.p));
+
+            Console.WriteLine("p = {0}, Alice Ca = {1}, Alice Da = {2}, Bob Cb = {3}, Bob Db = {4}", ash.p, ash.GetCa(), ash.Getda(), bsh.GetCa(), bsh.Getda());
+
+            Console.Write("Encrypto Alice = ");
+            for (int i = 0; i < text.Count; i++)
+            {
+                int x1;
+                x1 = ost(text[i], ash.GetCa(), ash.p);
+                ash.x1.Add(x1);
+                Console.Write("{0} ",ash.x1[i]);
+            }
+
+            Console.WriteLine();
+
+            Console.Write("Encrypto Bob = ");
+            for (int i = 0; i < ash.x1.Count; i++)
+            {
+                int x1;
+                x1 = ost(ash.x1[i], bsh.GetCa(), bsh.p);
+                bsh.x1.Add(x1);
+                Console.Write("{0} ", bsh.x1[i]);
+            }
+
+            Console.WriteLine();
+
+            Console.Write("Encrypto Alice = ");
+            for (int i = 0; i < bsh.x1.Count; i++)
+            {
+                int x2;
+                x2 = ost(bsh.x1[i], ash.Getda(), ash.p);
+                ash.x2.Add(x2);
+                Console.Write("{0} ", ash.x2[i]);
+            }
+
+            Console.WriteLine();
+
+            Console.Write("Decrypto Bob = ");
+            for (int i = 0; i < ash.x2.Count; i++)
+            {
+                int x2;
+                x2 = ost(ash.x2[i], bsh.Getda(), bsh.p);
+                bsh.x2.Add(x2);
+                Console.Write("{0} ", bsh.x1[i]);
+            }
+            Console.ReadKey();
+        }
+
+        static int Main(string[] args)
+        {
+            var programm = new Programm();
             SourseText soursetext = new();
-            string num;
             string stext;
 
             Console.WriteLine("Enter the source text: ");
             stext = Console.ReadLine();
 
             Console.Clear();
-            
 
+            soursetext.SetSourseElement(stext);
+
+            Console.WriteLine("Your text: {0}", stext);
+            Console.Write("Transform text: ");
+            soursetext.GetSourseText();
+            Console.ReadKey();
+
+
+            while(true)
+            {
+                Console.Clear();
+                string num;
+                Console.WriteLine("1.RSA \n2.Diffie-Hellman \n3.ElGamal \n4.Shamir \n5.Exit");
+                num = Console.ReadLine();
+
+
+
+                switch(num)
+                {
+                    case "1":
+                        programm.EncryptRSA(ref soursetext.soursetext);
+                        break;
+                    case "2":
+                        programm.EncryptDH();
+                        break;
+                    case "3":
+                        programm.EncryptElGam(ref soursetext.soursetext);
+                        break;
+                    case "4":
+                        programm.EncryptSH(ref soursetext.soursetext);
+                        break;
+                    case "5":
+                        return 0;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Invalid number\n Try again");
+                        Console.ReadKey();
+                        break;
+                }
+
+            }
         }
     }
 }

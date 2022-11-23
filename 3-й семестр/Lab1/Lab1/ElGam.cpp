@@ -31,11 +31,11 @@ void EncryptElGam(const vector <int>& stext)
         elgam.decrypttext.push_back(elgam.decel);
     }
 
-	cout << "Encrypto ";
+	cout << "Your encrypted text: ";
 	elgam.GetEncryptText();
 	cout << endl;
 
-	cout << "Decrypto ";
+	cout << "Your decrypted text: ";
 	elgam.GetDecryptText();
 	cout << endl;
 
