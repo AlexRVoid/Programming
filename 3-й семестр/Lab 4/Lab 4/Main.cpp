@@ -10,14 +10,15 @@ using namespace std;
 class Applications
 {
 public: 
-
+    map <string, int> members = { {"Papa ", 1},
+                            {"Mama ", 2},
+                            {"Kate ", 3} };
     friend ostream& operator<<(const Applications& applications, ostream& os)
     {
-        os << "Member\t Member number" << endl;
-        for (auto i : applications.members)
-        {
-            os << i.first << "\t" << i.second << endl;
-        }
+        os << "Member\t Member number\n";
+        map<string, int>::const_iterator it;
+        for (it = applications.members.begin(); it != applications.members.end(); ++it)
+            os << (*it).first << " " << (*it).second << "\n";
         return os;
     }
     
@@ -26,7 +27,7 @@ public:
     void GetMembers();
     
 private:
-    map <string, int> members;
+    
     pair <string, int> member = {"aaa",123};
     map <int, int> result;
 };
@@ -43,9 +44,9 @@ void Applications::GetMembers()
 
 int menu()
 {
-    Applications applications;
+    Applications application;
     
-    cin >> applications;
+    cout << application.members;
 }
 
 int main()
