@@ -8,6 +8,8 @@
 
 using namespace std;
 
+
+
 class Applications
 {
 public:
@@ -34,33 +36,64 @@ public:
     friend void AddResult(Applications& applications, pair <int, int>& member);
     void FindMember(int membernumber);
 
-private:
+protected:
     map <int, string> members;
-    
+    map <int, string> users;
 };
-class LogIn
+
+class Users : private Applications
 {
+public:
+    int UserLogIn(const Users& users, const int& username, const string& userpass);
+    bool AdminLogIn(const Users& users, const string& username, const string& userpass);
 
+private:
 };
 
+int Users::UserLogIn(const Users& users, const int& username, const string& userpass)
+{
+    if (users.users.empty())
+    {
+        cout << "No registered users" << endl;
+        system("pause");
+        return 0;
+    }
+    for (auto i : users.users)
+    {
+        if (i.first == username && i.second == userpass)
+        {
+            return i.first;
+        }
+        else continue;
+    }
+
+}
 
 void AddMember(Applications& applications, pair <int, string>& member)
 {
     applications.members.insert(member);
-    applications.result.insert(member.first, NULL);
+    pair <int, int> res = { member.first, 0 };
+    applications.result.insert(res);
+    pair <int, string> user = {member.first, ""};
+    applications.users.insert(user);
+    
+
 }
 
 void Applications::GetMembers()
 {
+    system("cls");
     cout << "Member number\t Member" << endl;
     for (auto i : members)
     {
-        cout << i.first << "\t " << i.second << endl;
+        cout << i.first << "\t\t " << i.second << endl;
     }
+    system("pause");
 }
 
 void AddResult(Applications& applications, pair <int, int>& member)
 {
+    system("cls");
     if (applications.result.find(member.first) != applications.result.end())
     {
         map <int, int> ::iterator it;
@@ -73,12 +106,13 @@ void AddResult(Applications& applications, pair <int, int>& member)
 
 int Applications::GenMemberNumber()
 {
+    system("cls");
     while (true)
     {
         srand(time(NULL));
-        int membernum = rand() % 1000;
+        int membernum = rand() % 1000 + 1;
         map <int, string> ::iterator it;
-        if (members.find(membernum) != members.end())
+        if (members.find(membernum) != members.end() || members.empty())
         {
             return membernum;
         }
@@ -88,6 +122,7 @@ int Applications::GenMemberNumber()
 
 void Applications::FindMember(int membernumber)
 {
+    system("cls");
     map<int, string>::iterator it;
     map <int, int>::iterator itr;
     it = members.find(membernumber);
@@ -96,11 +131,6 @@ void Applications::FindMember(int membernumber)
         cout << "Member number\t Member\t Result" << endl;
         cout << (*it).first << "\t " << (*it).second << "\t " << (*itr).second << endl;
     }else cout << "There is no such member";
-}
-
-bool userlogin()
-{
-
 }
 
 void adminmenu()
@@ -116,9 +146,11 @@ void adminmenu()
         if (choice == 1)
         {
             pair <int, string> member;
-            member.first = application.GenMemberNumber();
             cout << "Enter the full name of member:" << endl;
-            getline(cin, member.second);
+            string name;
+            cin.ignore();
+            getline(cin, name);
+            member.second = name;
             member.first = application.GenMemberNumber();
             AddMember(application, member);
         }
@@ -138,13 +170,13 @@ void adminmenu()
             int membernum;
             cout << "Enter the member number: ";
                 cin >> membernum;
-
+            application.FindMember(membernum);
 
             
         }
         else if (choice == 4)
         {
-
+            application.GetMembers();
         }
         else if (choice == 5)
         {
@@ -157,5 +189,5 @@ void adminmenu()
 
 int main()
 {
-    userlogin();
+    adminmenu();
 }
