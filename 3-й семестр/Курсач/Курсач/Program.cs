@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace Курсач
 {
+    class Users
+    {
+
+    }
     internal static class Program
     {
         /// <summary>
@@ -17,6 +21,7 @@ namespace Курсач
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
         }
     }
 }
