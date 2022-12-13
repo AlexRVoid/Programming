@@ -101,5 +101,25 @@ namespace Курсач
         {
 
         }
+
+        private void Encrypt_to_file_Click(object sender, EventArgs e)
+        {
+
+            //using (FileStream fstream = new FileStream("EncryptText.txt", FileMode.OpenOrCreate))
+            //{
+            //    StreamWriter stream = new StreamWriter(fstream);
+            //    stream.WriteLine(encrypt_text.Text);
+            //}
+
+            if (File.Exists("Whole magazine.txt"))
+            {
+                File.Delete("Whole magazine.txt");
+            }
+            FileStream file = new FileStream("Whole magazine.txt", FileMode.Append);
+            StreamWriter stream = new StreamWriter(file);
+            stream.Write(encrypt_text.Text);
+            stream.Close();
+            file.Close();
+        }
     }
 }
