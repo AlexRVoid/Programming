@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace Курсач
 {
@@ -51,7 +52,7 @@ namespace Курсач
         {
             // Check arguments.
             if (soursetext == null || soursetext.Length <= 0)
-                throw new ArgumentNullException("plainText");
+                MessageBox.Show("Не введён текст для шифровки");
             if (Key == null || Key.Length <= 0)
                 throw new ArgumentNullException("Key");
             if (IV == null || IV.Length <= 0)

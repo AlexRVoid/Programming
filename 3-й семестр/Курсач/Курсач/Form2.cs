@@ -18,7 +18,9 @@ namespace Курсач
         {
             InitializeComponent();
             Cryptoprotocol.Items.AddRange(new string[] { "AES", "RC4", "RSA"});
+            Cryptoprotocol.SelectedItem = "AES";
             Cryptoprotocol.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            
 
         }
 
@@ -81,6 +83,21 @@ namespace Курсач
         }
 
         private void encrypt_text_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CryptoKey_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Decrypt_Click(object sender, EventArgs e)
         {
 
         }
