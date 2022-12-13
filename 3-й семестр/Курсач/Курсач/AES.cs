@@ -10,7 +10,23 @@ namespace Курсач
 {
     class AES
     {
-        public string Encrypt_Aes(string soursetext, byte[] Key, byte[] IV)
+        private byte[] encrypted;
+
+        
+
+        public string[] encrypttextToString(byte[] encrypt)
+        {
+            string[] enctext = new string[encrypt.Length];
+            for (int i = 0; i < encrypt.Length; i++)
+            {
+                enctext[i] = encrypt[i].ToString();
+            }
+            return enctext;
+        }
+            
+
+
+        public byte[] Encrypt_Aes(string soursetext, byte[] Key, byte[] IV)
         {
             // Check arguments.
             if (soursetext == null || soursetext.Length <= 0)
@@ -19,7 +35,7 @@ namespace Курсач
                 throw new ArgumentNullException("Key");
             if (IV == null || IV.Length <= 0)
                 throw new ArgumentNullException("IV");
-            byte[] encrypted;
+            
 
             // Create an Aes object
             // with the specified key and IV.
@@ -47,7 +63,7 @@ namespace Курсач
             }
 
             // Return the encrypted bytes from the memory stream.
-            return encrypted.ToString();
+            return encrypted;
         }
 
         static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)

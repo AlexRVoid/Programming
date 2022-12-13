@@ -39,12 +39,19 @@ namespace Курсач
 
         private void Encrypt_Click(object sender, EventArgs e)
         {
+            encrypt_text.Text = null;
             if (decrypt_text.Text != null && Cryptoprotocol.SelectedItem.ToString() == "AES")
             {
                 AES aes = new AES();
                 using (Aes Aes = Aes.Create())
                 {
-                    encrypt_text.Text = aes.Encrypt_Aes(decrypt_text.Text, Aes.Key, Aes.IV);
+                    string[] enctext = aes.encrypttextToString(aes.Encrypt_Aes(decrypt_text.Text, Aes.Key, Aes.IV));
+                    for (int i = 0; i < enctext.Length; i++)
+                    {
+                        encrypt_text.Text += enctext[i];
+
+                        encrypt_text.Text += "\n";
+                    }
                 }
             }
             else
