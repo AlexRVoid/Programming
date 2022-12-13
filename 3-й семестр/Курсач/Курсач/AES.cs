@@ -12,7 +12,28 @@ namespace Курсач
     {
         private byte[] encrypted;
 
-        
+        public string[] encryptKeyToString(byte[] Key)
+        {
+            string[] encryptkey = new string[Key.Length];
+
+            for (int i = 0; i < Key.Length; i++)
+            {
+                encryptkey[i] = Key[i].ToString();
+            }
+
+            return encryptkey;
+        }
+        public string[] encryptIVToString(byte[] IV)
+        {
+            string[] encryptiv = new string[IV.Length];
+
+            for (int i = 0; i < IV.Length; i++)
+            {
+                encryptiv[i] = IV[i].ToString();
+            }
+
+            return encryptiv;
+        }
 
         public string[] encrypttextToString(byte[] encrypt)
         {
