@@ -38,9 +38,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Encrypt_to_file = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.CryptoKey = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.CryptoKey1 = new System.Windows.Forms.RichTextBox();
             this.Exit = new System.Windows.Forms.Button();
+            this.CryptoKey2 = new System.Windows.Forms.RichTextBox();
+            this.Key2 = new System.Windows.Forms.Label();
+            this.Key1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -86,7 +88,7 @@
             // Decrypt
             // 
             this.Decrypt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Decrypt.Location = new System.Drawing.Point(322, 440);
+            this.Decrypt.Location = new System.Drawing.Point(323, 526);
             this.Decrypt.Name = "Decrypt";
             this.Decrypt.Size = new System.Drawing.Size(164, 55);
             this.Decrypt.TabIndex = 6;
@@ -97,7 +99,7 @@
             // Encrypt
             // 
             this.Encrypt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Encrypt.Location = new System.Drawing.Point(322, 379);
+            this.Encrypt.Location = new System.Drawing.Point(323, 465);
             this.Encrypt.Name = "Encrypt";
             this.Encrypt.Size = new System.Drawing.Size(164, 55);
             this.Encrypt.TabIndex = 7;
@@ -128,7 +130,7 @@
             // Encrypt_to_file
             // 
             this.Encrypt_to_file.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Encrypt_to_file.Location = new System.Drawing.Point(537, 515);
+            this.Encrypt_to_file.Location = new System.Drawing.Point(552, 526);
             this.Encrypt_to_file.Name = "Encrypt_to_file";
             this.Encrypt_to_file.Size = new System.Drawing.Size(236, 55);
             this.Encrypt_to_file.TabIndex = 11;
@@ -146,26 +148,16 @@
             this.button1.Text = "Записать в файл";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // CryptoKey
+            // CryptoKey1
             // 
-            this.CryptoKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CryptoKey.Location = new System.Drawing.Point(322, 228);
-            this.CryptoKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.CryptoKey.Name = "CryptoKey";
-            this.CryptoKey.Size = new System.Drawing.Size(165, 106);
-            this.CryptoKey.TabIndex = 13;
-            this.CryptoKey.Text = "";
-            this.CryptoKey.TextChanged += new System.EventHandler(this.CryptoKey_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(353, 202);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 24);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Crypto Key";
+            this.CryptoKey1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CryptoKey1.Location = new System.Drawing.Point(322, 237);
+            this.CryptoKey1.Margin = new System.Windows.Forms.Padding(2);
+            this.CryptoKey1.Name = "CryptoKey1";
+            this.CryptoKey1.Size = new System.Drawing.Size(165, 64);
+            this.CryptoKey1.TabIndex = 13;
+            this.CryptoKey1.Text = "";
+            this.CryptoKey1.TextChanged += new System.EventHandler(this.CryptoKey_TextChanged);
             // 
             // Exit
             // 
@@ -178,15 +170,46 @@
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
+            // CryptoKey2
+            // 
+            this.CryptoKey2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CryptoKey2.Location = new System.Drawing.Point(322, 340);
+            this.CryptoKey2.Margin = new System.Windows.Forms.Padding(2);
+            this.CryptoKey2.Name = "CryptoKey2";
+            this.CryptoKey2.Size = new System.Drawing.Size(165, 64);
+            this.CryptoKey2.TabIndex = 16;
+            this.CryptoKey2.Text = "";
+            // 
+            // Key2
+            // 
+            this.Key2.AutoSize = true;
+            this.Key2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Key2.Location = new System.Drawing.Point(367, 314);
+            this.Key2.Name = "Key2";
+            this.Key2.Size = new System.Drawing.Size(0, 24);
+            this.Key2.TabIndex = 17;
+            this.Key2.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // Key1
+            // 
+            this.Key1.AutoSize = true;
+            this.Key1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Key1.Location = new System.Drawing.Point(367, 211);
+            this.Key1.Name = "Key1";
+            this.Key1.Size = new System.Drawing.Size(0, 24);
+            this.Key1.TabIndex = 18;
+            // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(800, 660);
+            this.ClientSize = new System.Drawing.Size(823, 660);
+            this.Controls.Add(this.Key1);
+            this.Controls.Add(this.Key2);
+            this.Controls.Add(this.CryptoKey2);
             this.Controls.Add(this.Exit);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.CryptoKey);
+            this.Controls.Add(this.CryptoKey1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Encrypt_to_file);
             this.Controls.Add(this.label3);
@@ -198,6 +221,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Шифровка/Дешифровка";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
@@ -217,8 +241,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Encrypt_to_file;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox CryptoKey;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox CryptoKey1;
         private System.Windows.Forms.Button Exit;
+        private System.Windows.Forms.RichTextBox CryptoKey2;
+        private System.Windows.Forms.Label Key2;
+        private System.Windows.Forms.Label Key1;
     }
 }

@@ -17,7 +17,7 @@ namespace Курсач
         public Form2()
         {
             InitializeComponent();
-            Cryptoprotocol.Items.AddRange(new string[] { "AES", "RC4", "RSA"});
+            Cryptoprotocol.Items.AddRange(new string[] { "AES", "RSA"});
             Cryptoprotocol.SelectedItem = "AES";
             Cryptoprotocol.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             
@@ -31,7 +31,17 @@ namespace Курсач
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Cryptoprotocol.SelectedItem.ToString() == "AES")
+            {
+                Key1.Show();
+                Key1.Text = "AES Key";
 
+                Key2.Show();
+                Key2.Text = "AES IV";
+
+                CryptoKey1.Show();
+                CryptoKey2.Show();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -49,22 +59,20 @@ namespace Курсач
                 {
 
                     string[] enckey = aes.encryptKeyToString(Aes.Key);
-                    CryptoKey.Text += "AES Key: ";
                     for (int i = 0; i < enckey.Length; i++)
                     {
                         
-                        CryptoKey.Text += enckey[i];
+                        CryptoKey1.Text += enckey[i];
 
-                        encrypt_text.Text += " ";
+                        CryptoKey1.Text += " ";
                     }
 
                     string[] enciv = aes.encryptIVToString(Aes.IV);
-                    CryptoKey.Text += "\n\nAES IV: ";
                     for (int i = 0; i < enciv.Length; i++)
                     {
-                        CryptoKey.Text += enciv[i];
+                        CryptoKey2.Text += enciv[i];
 
-                        encrypt_text.Text += " ";
+                        CryptoKey2.Text += " ";
                     }
 
                     string[] enctext = aes.encrypttextToString(aes.Encrypt_Aes(decrypt_text.Text, Aes.Key, Aes.IV));
@@ -120,6 +128,11 @@ namespace Курсач
             stream.Write(encrypt_text.Text);
             stream.Close();
             file.Close();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
