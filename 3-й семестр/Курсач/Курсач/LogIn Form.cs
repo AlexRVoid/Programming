@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Курсач
 {
-    public partial class Form1 : Form
+    public partial class LogInForm : Form
     {
-        public Form1()
+        public LogInForm()
         {
             InitializeComponent();
             User_pass.UseSystemPasswordChar = true;
@@ -38,7 +38,7 @@ namespace Курсач
         {
             if (User_name.Text == "admin" && User_pass.Text == "1111")
             {
-                Form2 newForm = new Form2();
+                CryptoProtocolForm newForm = new CryptoProtocolForm();
                 newForm.Show();
                 this.Hide();
             }    

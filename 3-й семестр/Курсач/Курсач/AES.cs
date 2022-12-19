@@ -12,6 +12,7 @@ namespace Курсач
     class AES
     {
         private byte[] encrypted;
+        
 
         public string[] encryptKeyToString(byte[] Key)
         {
@@ -46,7 +47,29 @@ namespace Курсач
             return enctext;
         }
             
+        public byte[] StringToByte (string s) 
+        {
+            int n = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == ' ')
+                    n++;
+            }
+            string[] enctext = new string[n];
+            byte[] result = new byte[n];
+            for (int i = 0, j = 0; i < s.Length - 1 && j < s.Length - 1; i++)
+            {
+                enctext[j] += s[i];
+                if (s[i] == ' ')
+                    j++;
+            }
+            for (int i = 0; i < enctext.Length; i++)
+            {
+                result[i] = Convert.ToByte(enctext[i]);
+            }
+            return result;
 
+        }
 
         public byte[] Encrypt_Aes(string soursetext, byte[] Key, byte[] IV)
         {
@@ -54,9 +77,9 @@ namespace Курсач
             if (soursetext == null || soursetext.Length <= 0)
                 MessageBox.Show("Не введён текст для шифровки");
             if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
+                MessageBox.Show("Введён неверный ключ шифровки");
             if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
+                MessageBox.Show("Введён неверный ключ шифровки");
             
 
             // Create an Aes object
@@ -88,31 +111,30 @@ namespace Курсач
             return encrypted;
         }
 
-        static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        public string Decrypt_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
-            // Check arguments.
+            // Проверка аргументов.
             if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
+                MessageBox.Show("Не введён текст для дешифровки");
             if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
+                MessageBox.Show("Введён неверный ключ шифровки");
             if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
+                MessageBox.Show("Введён неверный ключ шифровки");
 
-            // Declare the string used to hold
-            // the decrypted text.
+            //Объяввление переменной для расшифрованного текста.
             string plaintext = null;
 
-            // Create an Aes object
-            // with the specified key and IV.
+            // Создание объекта класса AES библиотеки System.Security.Cryptography
             using (Aes aesAlg = Aes.Create())
             {
+                // Указание в качестве ключей дешифровки, пользовательских ключей
                 aesAlg.Key = Key;
                 aesAlg.IV = IV;
 
-                // Create a decryptor to perform the stream transform.
+                // Создание дешифратора для выполнения преобразования потока.
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
-                // Create the streams used for decryption.
+                // Создание потока для расшифровки
                 using (MemoryStream msDecrypt = new MemoryStream(cipherText))
                 {
                     using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
@@ -120,8 +142,7 @@ namespace Курсач
                         using (StreamReader srDecrypt = new StreamReader(csDecrypt))
                         {
 
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
+                            // Чтение расшифрованных байтов из потокаи помещение их в строку для вывода
                             plaintext = srDecrypt.ReadToEnd();
                         }
                     }

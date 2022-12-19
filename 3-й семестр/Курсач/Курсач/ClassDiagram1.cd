@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Курсач.AES">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAIAAAAAAFABAAAAAAAAAAAAAAAAAAAgAgAAA=</HashCode>
+      <FileName>AES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Курсач.CryptoProtocolForm">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAIIQAACAgAjAQAgCAAAADUAATACAAIEAAAAAkAAA=</HashCode>
+      <FileName>Crypto Protocol Form.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Курсач.Program">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Курсач.LogInForm">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIBEAIACACAASAgAAAIAAICQQAAAAAAA=</HashCode>
+      <FileName>LogIn Form.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Arial" Size="9" />
+</ClassDiagram>

@@ -1,6 +1,6 @@
 ﻿namespace Курсач
 {
-    partial class Form2
+    partial class CryptoProtocolForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.Cryptoprotocol = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.Encrypt_to_file = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Decrypt_to_file = new System.Windows.Forms.Button();
             this.CryptoKey1 = new System.Windows.Forms.RichTextBox();
             this.Exit = new System.Windows.Forms.Button();
             this.CryptoKey2 = new System.Windows.Forms.RichTextBox();
@@ -111,7 +111,7 @@
             // 
             this.Cryptoprotocol.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Cryptoprotocol.FormattingEnabled = true;
-            this.Cryptoprotocol.Location = new System.Drawing.Point(322, 131);
+            this.Cryptoprotocol.Location = new System.Drawing.Point(322, 85);
             this.Cryptoprotocol.Name = "Cryptoprotocol";
             this.Cryptoprotocol.Size = new System.Drawing.Size(165, 32);
             this.Cryptoprotocol.TabIndex = 8;
@@ -121,7 +121,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(338, 89);
+            this.label3.Location = new System.Drawing.Point(338, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 24);
             this.label3.TabIndex = 9;
@@ -138,20 +138,21 @@
             this.Encrypt_to_file.UseVisualStyleBackColor = true;
             this.Encrypt_to_file.Click += new System.EventHandler(this.Encrypt_to_file_Click);
             // 
-            // button1
+            // Decrypt_to_file
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(31, 526);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(236, 55);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Записать в файл";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Decrypt_to_file.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Decrypt_to_file.Location = new System.Drawing.Point(31, 526);
+            this.Decrypt_to_file.Name = "Decrypt_to_file";
+            this.Decrypt_to_file.Size = new System.Drawing.Size(236, 55);
+            this.Decrypt_to_file.TabIndex = 12;
+            this.Decrypt_to_file.Text = "Записать в файл";
+            this.Decrypt_to_file.UseVisualStyleBackColor = true;
+            this.Decrypt_to_file.Click += new System.EventHandler(this.button1_Click);
             // 
             // CryptoKey1
             // 
             this.CryptoKey1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CryptoKey1.Location = new System.Drawing.Point(322, 237);
+            this.CryptoKey1.Location = new System.Drawing.Point(322, 284);
             this.CryptoKey1.Margin = new System.Windows.Forms.Padding(2);
             this.CryptoKey1.Name = "CryptoKey1";
             this.CryptoKey1.Size = new System.Drawing.Size(165, 64);
@@ -173,7 +174,7 @@
             // CryptoKey2
             // 
             this.CryptoKey2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CryptoKey2.Location = new System.Drawing.Point(322, 340);
+            this.CryptoKey2.Location = new System.Drawing.Point(322, 387);
             this.CryptoKey2.Margin = new System.Windows.Forms.Padding(2);
             this.CryptoKey2.Name = "CryptoKey2";
             this.CryptoKey2.Size = new System.Drawing.Size(165, 64);
@@ -184,7 +185,7 @@
             // 
             this.Key2.AutoSize = true;
             this.Key2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Key2.Location = new System.Drawing.Point(367, 314);
+            this.Key2.Location = new System.Drawing.Point(367, 361);
             this.Key2.Name = "Key2";
             this.Key2.Size = new System.Drawing.Size(0, 24);
             this.Key2.TabIndex = 17;
@@ -194,12 +195,12 @@
             // 
             this.Key1.AutoSize = true;
             this.Key1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Key1.Location = new System.Drawing.Point(367, 211);
+            this.Key1.Location = new System.Drawing.Point(367, 258);
             this.Key1.Name = "Key1";
             this.Key1.Size = new System.Drawing.Size(0, 24);
             this.Key1.TabIndex = 18;
             // 
-            // Form2
+            // CryptoProtocolForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
@@ -210,7 +211,7 @@
             this.Controls.Add(this.CryptoKey2);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.CryptoKey1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Decrypt_to_file);
             this.Controls.Add(this.Encrypt_to_file);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Cryptoprotocol);
@@ -220,7 +221,7 @@
             this.Controls.Add(this.decrypt_text);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
+            this.Name = "CryptoProtocolForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Шифровка/Дешифровка";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -240,7 +241,7 @@
         private System.Windows.Forms.ComboBox Cryptoprotocol;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Encrypt_to_file;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Decrypt_to_file;
         private System.Windows.Forms.RichTextBox CryptoKey1;
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.RichTextBox CryptoKey2;

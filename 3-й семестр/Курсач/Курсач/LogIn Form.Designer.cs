@@ -1,6 +1,6 @@
 ﻿namespace Курсач
 {
-    partial class Form1
+    partial class LogInForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
