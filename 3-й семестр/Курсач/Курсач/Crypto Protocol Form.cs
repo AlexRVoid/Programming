@@ -90,7 +90,7 @@ namespace Курсач
                     }
                     else if (CryptoKey1.Text != "" && CryptoKey2.Text != "")
                     {
-                        string[] enctext = aes.encrypttextToString(aes.Encrypt_Aes(decrypt_text.Text, aes.StringToByte(CryptoKey1.Text), aes.StringToByte(CryptoKey2.Text)));
+                        string[] enctext = aes.encrypttextToString(aes.Encrypt_Aes(decrypt_text.Text, aes.StringToByte(CryptoKey1.Text, 32), aes.StringToByte(CryptoKey2.Text,16)));
                         for (int i = 0; i < enctext.Length; i++)
                         {
                             encrypt_text.Text += enctext[i];
@@ -134,7 +134,7 @@ namespace Курсач
                     {
                         
 
-                        string dectext = aes.Decrypt_Aes(aes.StringToByte(encrypt_text.Text), aes.StringToByte(CryptoKey1.Text), aes.StringToByte(CryptoKey2.Text));
+                        string dectext = aes.Decrypt_Aes(aes.StringToByte(encrypt_text.Text, 16), aes.StringToByte(CryptoKey1.Text, 32), aes.StringToByte(CryptoKey2.Text, 16));
                         
                             decrypt_text.Text += dectext;
 
@@ -190,6 +190,17 @@ namespace Курсач
             stream.Close();
             file.Close();
             MessageBox.Show("Файл успешно записан.");
+        }
+
+        private void encrypt_text_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number) && e.KeyChar != 32)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

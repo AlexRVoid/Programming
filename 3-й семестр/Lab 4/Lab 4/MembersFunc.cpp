@@ -123,8 +123,9 @@ void Applications::FindMember(const int& membernumber)
     it = members.find(membernumber);
     itr = result.find(membernumber);
     if (it != members.end() && itr != result.end()) {
-        cout << "Member number\t Member\t Result" << endl;
-        cout << (*it).first << "\t " << (*it).second << "\t " << (*itr).second << endl;
+        cout << "Member number\t Member\t\t\t\t Result" << endl;
+        cout << (*it).first << "\t\t " << (*it).second << "\t " << (*itr).second << endl;
     }
     else cout << "There is no such member";
+    system("pause");
 }

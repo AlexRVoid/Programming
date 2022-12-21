@@ -47,17 +47,12 @@ namespace Курсач
             return enctext;
         }
             
-        public byte[] StringToByte (string s) 
+        public byte[] StringToByte (string s, int keylength) 
         {
-            int n = 0;
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s[i] == ' ')
-                    n++;
-            }
-            string[] enctext = new string[n];
-            byte[] result = new byte[n];
-            for (int i = 0, j = 0; i < s.Length - 1 && j < s.Length - 1; i++)
+
+            string[] enctext = new string[keylength];
+            byte[] result = new byte[keylength];
+            for (int i = 0, j = 0; i < s.Length - 1 && j < keylength; i++)
             {
                 enctext[j] += s[i];
                 if (s[i] == ' ')
@@ -68,6 +63,10 @@ namespace Курсач
                 result[i] = Convert.ToByte(enctext[i]);
             }
             return result;
+
+            //byte[] result = new byte[keylength];
+            //result = Encoding.ASCII.GetBytes(s);
+            //return result;
 
         }
 

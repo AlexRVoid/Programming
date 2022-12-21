@@ -84,6 +84,7 @@
             this.encrypt_text.TabIndex = 5;
             this.encrypt_text.Text = "";
             this.encrypt_text.TextChanged += new System.EventHandler(this.encrypt_text_TextChanged);
+            this.encrypt_text.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.encrypt_text_KeyPress);
             // 
             // Decrypt
             // 

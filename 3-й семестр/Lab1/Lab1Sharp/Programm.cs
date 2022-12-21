@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+
+
 namespace Programm
 {
     class Programm
@@ -368,6 +370,8 @@ namespace Programm
 
             Console.Clear();
             Console.WriteLine("=========================ElGamal");
+
+            elgam.GenKey(elgam.g, elgam.GetPKey(), elgam.p);
 
             for (int i = 0; i < text.Count; i++) //encrypt
             {
