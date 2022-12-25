@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using System.Linq.Expressions;
 
 namespace Курсач
 {
     class AES
     {
         private byte[] encrypted;
-        
+        private string plaintext;
+
+
 
         public string[] encryptKeyToString(byte[] Key)
         {
@@ -49,106 +52,156 @@ namespace Курсач
             
         public byte[] StringToByte (string s, int keylength) 
         {
-
-            string[] enctext = new string[keylength];
-            byte[] result = new byte[keylength];
-            for (int i = 0, j = 0; i < s.Length - 1 && j < keylength; i++)
+            try
             {
-                enctext[j] += s[i];
-                if (s[i] == ' ')
-                    j++;
+                if (keylength > 0)
+                {
+                    string[] enctext = new string[keylength];
+                    byte[] result = new byte[keylength];
+                    for (int i = 0, j = 0; i < s.Length - 1 && j < keylength; i++)
+                    {
+                        enctext[j] += s[i];
+                        if (s[i] == ' ')
+                            j++;
+                    }
+                    for (int i = 0; i < enctext.Length; i++)
+                    {
+                        result[i] = Convert.ToByte(enctext[i]);
+                    }
+                    return result;
+                }
+                else
+                {
+                    int n = 0;
+                    for (int i = 0; i < s.Length; i++)
+                    {
+                        if (s[i] == ' ')
+                            n++;
+                    }
+                    string[] enctext = new string[n];
+                    byte[] result = new byte[n];
+                    for (int i = 0, j = 0; i < s.Length - 1 && j < s.Length - 1; i++)
+                    {
+                        enctext[j] += s[i];
+                        if (s[i] == ' ')
+                            j++;
+                    }
+                    for (int i = 0; i < enctext.Length; i++)
+                    {
+                        result[i] = Convert.ToByte(enctext[i]);
+                    }
+                    return result;
+                }
+
             }
-            for (int i = 0; i < enctext.Length; i++)
+            catch
             {
-                result[i] = Convert.ToByte(enctext[i]);
+                MessageBox.Show("Ошибка шифровки / дешифровки.");
+                return null;
             }
-            return result;
-
-            //byte[] result = new byte[keylength];
-            //result = Encoding.ASCII.GetBytes(s);
-            //return result;
-
         }
 
         public byte[] Encrypt_Aes(string soursetext, byte[] Key, byte[] IV)
         {
-            // Check arguments.
-            if (soursetext == null || soursetext.Length <= 0)
-                MessageBox.Show("Не введён текст для шифровки");
-            if (Key == null || Key.Length <= 0)
-                MessageBox.Show("Введён неверный ключ шифровки");
-            if (IV == null || IV.Length <= 0)
-                MessageBox.Show("Введён неверный ключ шифровки");
-            
-
-            // Create an Aes object
-            // with the specified key and IV.
-            using (Aes aesAlg = Aes.Create())
+            try
             {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create an encryptor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
+                // Check arguments.
+                if (soursetext == null || soursetext.Length <= 0)
                 {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    MessageBox.Show("Не введён текст для шифровки");
+                    return null;
+                }
+                if (Key == null || Key.Length <= 0)
+                    MessageBox.Show("Введён неверный ключ шифровки");
+                if (IV == null || IV.Length <= 0)
+                    MessageBox.Show("Введён неверный ключ шифровки");
+
+
+                // Create an Aes object
+                // with the specified key and IV.
+                using (Aes aesAlg = Aes.Create())
+                {
+                    aesAlg.Key = Key;
+                    aesAlg.IV = IV;
+
+                    // Create an encryptor to perform the stream transform.
+                    ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                    // Create the streams used for encryption.
+                    using (MemoryStream msEncrypt = new MemoryStream())
                     {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                         {
-                            //Write all data to the stream.
-                            swEncrypt.Write(soursetext);
+                            using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                            {
+                                //Write all data to the stream.
+                                swEncrypt.Write(soursetext);
+                            }
+                            encrypted = msEncrypt.ToArray();
                         }
-                        encrypted = msEncrypt.ToArray();
                     }
                 }
-            }
 
-            // Return the encrypted bytes from the memory stream.
-            return encrypted;
+                // Return the encrypted bytes from the memory stream.
+                return encrypted;
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка шифровки / дешифровки.");
+                return null;
+            }
         }
+
 
         public string Decrypt_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
-            // Проверка аргументов.
-            if (cipherText == null || cipherText.Length <= 0)
-                MessageBox.Show("Не введён текст для дешифровки");
-            if (Key == null || Key.Length <= 0)
-                MessageBox.Show("Введён неверный ключ шифровки");
-            if (IV == null || IV.Length <= 0)
-                MessageBox.Show("Введён неверный ключ шифровки");
-
-            //Объяввление переменной для расшифрованного текста.
-            string plaintext = null;
-
-            // Создание объекта класса AES библиотеки System.Security.Cryptography
-            using (Aes aesAlg = Aes.Create())
+            try
             {
-                // Указание в качестве ключей дешифровки, пользовательских ключей
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Создание дешифратора для выполнения преобразования потока.
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                // Создание потока для расшифровки
-                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                // Проверка аргументов.
+                if (cipherText == null || cipherText.Length <= 0)
                 {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
+                    MessageBox.Show("Не введён текст для дешифровки");
+                    return null;
+                }
+                if (Key == null || Key.Length <= 0)
+                    MessageBox.Show("Введён неверный ключ шифровки");
+                if (IV == null || IV.Length <= 0)
+                    MessageBox.Show("Введён неверный ключ шифровки");
 
-                            // Чтение расшифрованных байтов из потокаи помещение их в строку для вывода
-                            plaintext = srDecrypt.ReadToEnd();
+                plaintext = null;
+
+                // Создание объекта класса AES библиотеки System.Security.Cryptography
+                using (Aes aesAlg = Aes.Create())
+                {
+                    // Указание в качестве ключей дешифровки, пользовательских ключей
+                    aesAlg.Key = Key;
+                    aesAlg.IV = IV;
+
+                    // Создание дешифратора для выполнения преобразования потока.
+                    ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                    // Создание потока для расшифровки
+                    using (MemoryStream msDecrypt = new MemoryStream(cipherText))
+                    {
+                        using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                            {
+
+                                // Чтение расшифрованных байтов из потокаи помещение их в строку для вывода
+                                plaintext = srDecrypt.ReadToEnd();
+                            }
                         }
                     }
                 }
-            }
 
-            return plaintext;
+                return plaintext;
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка шифровки / дешифровки.");  
+                return null;
+            }
         }
 
     }

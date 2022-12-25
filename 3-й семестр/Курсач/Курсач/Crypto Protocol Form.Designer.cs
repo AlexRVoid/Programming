@@ -160,6 +160,7 @@
             this.CryptoKey1.TabIndex = 13;
             this.CryptoKey1.Text = "";
             this.CryptoKey1.TextChanged += new System.EventHandler(this.CryptoKey_TextChanged);
+            this.CryptoKey1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CryptoKey1_KeyPress);
             // 
             // Exit
             // 
@@ -181,6 +182,7 @@
             this.CryptoKey2.Size = new System.Drawing.Size(165, 64);
             this.CryptoKey2.TabIndex = 16;
             this.CryptoKey2.Text = "";
+            this.CryptoKey2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CryptoKey2_KeyPress);
             // 
             // Key2
             // 

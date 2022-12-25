@@ -130,7 +130,7 @@ namespace Курсач
                 AES aes = new AES();
                 using (Aes Aes = Aes.Create())
                 {
-                    if (CryptoKey1.Text != "" && CryptoKey2.Text != "")
+                    if (CryptoKey1.Text != "" && CryptoKey2.Text != "" && aes.StringToByte(encrypt_text.Text, 0).Length == 16 && aes.StringToByte(CryptoKey1.Text, 0).Length == 32)
                     {
                         
 
@@ -148,6 +148,12 @@ namespace Курсач
                         CryptoKey2.Text = "";
 
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введён неверный ключ шифровки");
+                        CryptoKey1.Text = null;
+                        CryptoKey2= null;
                     }
                 }
             }
@@ -195,6 +201,26 @@ namespace Курсач
         private void encrypt_text_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number) && e.KeyChar != 32)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CryptoKey1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number) && e.KeyChar != 32)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CryptoKey2_KeyPress(object sender, KeyPressEventArgs e)
+        {
             char number = e.KeyChar;
 
             if (!Char.IsDigit(number) && e.KeyChar != 32)
