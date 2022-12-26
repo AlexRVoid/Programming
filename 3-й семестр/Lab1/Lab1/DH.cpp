@@ -2,6 +2,30 @@
 
 using namespace std;
 
+int DH::GetXkey()
+{
+	return xa;
+}
+
+void DH::SetYkey(const int t)
+{
+	ya = 1;
+	for (int i = 0; i < (t - 1); i++)
+	{
+		ya = ya * g % p;
+	}
+	cout << Name << "'s Public Key: " << ya << endl;
+}
+void DH::SetXkey(const int t, const long int p_key)
+{
+	xa = 1;
+	for (int i = 0; i < (t - 1); i++)
+	{
+		xa = xa * p_key % p;
+	}
+	cout << Name << "'s Private Key: " << xa << endl;
+}
+
 void EncryptDH(const vector <int>& stext)
 {
 	DH dha;

@@ -44,12 +44,6 @@ public:
         return os;
     }
 
-    /*friend istream& operator>>(istream& is, Applications& applications)
-    {
-        is <<
-        return is;
-    }*/
-
     map <int, int> result;
 
 

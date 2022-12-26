@@ -2,7 +2,36 @@
 
 using namespace std;
 
+int ElGam::GetPKey()
+{
+	return p_key;
+}
 
+void ElGam::GenKey(int a, int x, int m)
+{
+	y = 1;
+	for (int i = 0; i < x; i++) {
+		y *= a;
+		y %= m;
+	}
+	cout << "y = " << y << endl;
+}
+
+void ElGam::GetEncryptText()
+{
+	for (int i = 0; i < encrypttext.size(); i++)
+	{
+		cout << encrypttext[i].first << " " << encrypttext[i].second << "  ";
+	}
+}
+
+void ElGam::GetDecryptText()
+{
+	for (int i = 0; i < decrypttext.size(); i++)
+	{
+		cout << decrypttext[i] << " ";
+	}
+}
 
 void EncryptElGam(const vector <int>& stext)
 {

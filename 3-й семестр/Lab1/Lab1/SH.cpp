@@ -2,6 +2,24 @@
 
 using namespace std;
 
+int SH::GetCa() {
+    return Ca;
+}
+
+
+void SH::SetCa(const int& a) {
+    Ca = a;
+}
+
+int SH::Getda() {
+    return da;
+}
+
+
+void SH::Setda(const int& a) {
+    da = a;
+}
+
 int GenFirstKey(const int& p)
 {
     int ca = rand() % (p - 1);
