@@ -42,18 +42,26 @@ namespace Курсач
 
         public string[] encrypttextToString(byte[] encrypt)
         {
-            string[] enctext = new string[encrypt.Length];
-            for (int i = 0; i < encrypt.Length; i++)
+            if (encrypt != null)
             {
-                enctext[i] = encrypt[i].ToString();
+                string[] enctext = new string[encrypt.Length];
+                for (int i = 0; i < encrypt.Length; i++)
+                {
+                    enctext[i] = encrypt[i].ToString();
+                }
+                return enctext;
             }
-            return enctext;
+            else
+            {
+                MessageBox.Show("Ошибка шифровки / дешифровки.");
+                return null;
+            }
+            
         }
             
-        public byte[] StringToByte (string s, int keylength) 
+        public byte[] StringToByte (string s, int keylength, bool enc) 
         {
-            try
-            {
+           
                 if (keylength > 0)
                 {
                     string[] enctext = new string[keylength];
@@ -61,8 +69,22 @@ namespace Курсач
                     for (int i = 0, j = 0; i < s.Length - 1 && j < keylength; i++)
                     {
                         enctext[j] += s[i];
-                        if (s[i] == ' ')
-                            j++;
+                        if (enc == true && enctext[j].Length > 3)
+                        {
+                            MessageBox.Show("Введён неверный ключ шифровки");
+                            return null;
+                        }
+                        if (i <= s.Length - 3)
+                        {
+                            if ((s[i + 1] == ' ' || s[i + 1] == '\n') && (s[i + 2] != ' ' || s[i + 2] != '\n'))
+                            {
+                                j++;
+                                i++;
+
+                            }
+                            else if ((s[i + 1] == ' ' || s[i + 1] == '\n') && (s[i + 2] == ' ' || s[i + 2] == '\n')) continue;
+                        }
+
                     }
                     for (int i = 0; i < enctext.Length; i++)
                     {
@@ -83,22 +105,31 @@ namespace Курсач
                     for (int i = 0, j = 0; i < s.Length - 1 && j < s.Length - 1; i++)
                     {
                         enctext[j] += s[i];
-                        if (s[i] == ' ')
-                            j++;
+                        if (enc == true && enctext[j].Length > 3)
+                        {
+                            MessageBox.Show("Введён неверный ключ шифровки");
+                            return null;
+                        }
+                        if (i <= s.Length - 3)
+                        {
+                            if ((s[i + 1] == ' ' || s[i + 1] == '\n') && (s[i + 2] != ' ' || s[i + 2] != '\n') && (i <= s.Length - 3))
+                            {
+                                j++;
+                                i++;
+
+                            }
+                            else if ((s[i + 1] == ' ' || s[i + 1] == '\n') && (s[i + 2] == ' ' || s[i + 2] == '\n') && (i <= s.Length - 3)) continue;
+                        }
                     }
-                    for (int i = 0; i < enctext.Length; i++)
+                for (int i = 0; i < enctext.Length; i++)
                     {
                         result[i] = Convert.ToByte(enctext[i]);
                     }
                     return result;
                 }
 
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка шифровки / дешифровки.");
-                return null;
-            }
+            
+           
         }
 
         public byte[] Encrypt_Aes(string soursetext, byte[] Key, byte[] IV)
@@ -112,9 +143,15 @@ namespace Курсач
                     return null;
                 }
                 if (Key == null || Key.Length <= 0)
+                {
                     MessageBox.Show("Введён неверный ключ шифровки");
+                    return null;
+                }
                 if (IV == null || IV.Length <= 0)
+                {
                     MessageBox.Show("Введён неверный ключ шифровки");
+                    return null;
+                }
 
 
                 // Create an Aes object
@@ -164,9 +201,15 @@ namespace Курсач
                     return null;
                 }
                 if (Key == null || Key.Length <= 0)
+                {
                     MessageBox.Show("Введён неверный ключ шифровки");
+                    return null;
+                }
                 if (IV == null || IV.Length <= 0)
+                {
                     MessageBox.Show("Введён неверный ключ шифровки");
+                    return null;
+                }
 
                 plaintext = null;
 

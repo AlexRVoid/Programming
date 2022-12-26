@@ -110,6 +110,7 @@
             // 
             // Cryptoprotocol
             // 
+            this.Cryptoprotocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cryptoprotocol.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Cryptoprotocol.FormattingEnabled = true;
             this.Cryptoprotocol.Location = new System.Drawing.Point(322, 85);
@@ -208,7 +209,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(823, 660);
+            this.ClientSize = new System.Drawing.Size(821, 660);
             this.Controls.Add(this.Key1);
             this.Controls.Add(this.Key2);
             this.Controls.Add(this.CryptoKey2);
@@ -224,6 +225,7 @@
             this.Controls.Add(this.decrypt_text);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "CryptoProtocolForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Шифровка/Дешифровка";

@@ -21,6 +21,7 @@ namespace Курсач
             Cryptoprotocol.Items.AddRange(new string[] { "AES"});
             Cryptoprotocol.SelectedItem = "AES";
             Cryptoprotocol.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            Size = new Size(837, 699);
             
 
         }
@@ -55,7 +56,7 @@ namespace Курсач
 
         private void Encrypt_Click(object sender, EventArgs e)
         {
-            encrypt_text.Text = null;
+            encrypt_text.Clear();
             if (decrypt_text.Text != null && Cryptoprotocol.SelectedItem.ToString() == "AES")
             {
                 AES aes = new AES();
@@ -63,6 +64,7 @@ namespace Курсач
                 {
 
                     string[] enckey = aes.encryptKeyToString(Aes.Key);
+                    CryptoKey1.Text = null;
                     for (int i = 0; i < enckey.Length; i++)
                     {
                         
@@ -72,6 +74,7 @@ namespace Курсач
                     }
 
                     string[] enciv = aes.encryptIVToString(Aes.IV);
+                    CryptoKey2.Text = null;
                     for (int i = 0; i < enciv.Length; i++)
                     {
                         CryptoKey2.Text += enciv[i];
@@ -88,14 +91,20 @@ namespace Курсач
                             encrypt_text.Text += " ";
                         }
                     }
-                    else if (CryptoKey1.Text != "" && CryptoKey2.Text != "")
+                    else if (CryptoKey1.Text != "" && CryptoKey2.Text != "" && decrypt_text.Text != null)
                     {
-                        string[] enctext = aes.encrypttextToString(aes.Encrypt_Aes(decrypt_text.Text, aes.StringToByte(CryptoKey1.Text, 32), aes.StringToByte(CryptoKey2.Text,16)));
-                        for (int i = 0; i < enctext.Length; i++)
+                        if (aes.StringToByte(CryptoKey1.Text, 32, true).Length == 32 && aes.StringToByte(CryptoKey2.Text, 16, true).Length == 16)
                         {
-                            encrypt_text.Text += enctext[i];
+                            string[] enctext = aes.encrypttextToString(aes.Encrypt_Aes(decrypt_text.Text, aes.StringToByte(CryptoKey1.Text, 32, true), aes.StringToByte(CryptoKey2.Text, 16, true)));
+                            if (enctext != null && enctext.Length > 0)
+                            {
+                                for (int i = 0; i < enctext.Length; i++)
+                                {
+                                    encrypt_text.Text += enctext[i];
 
-                            encrypt_text.Text += " ";
+                                    encrypt_text.Text += " ";
+                                }
+                            }
                         }
                     }
                 }
@@ -125,37 +134,36 @@ namespace Курсач
         private void Decrypt_Click(object sender, EventArgs e)
         {
             decrypt_text.Text = null;
-            if (encrypt_text.Text != null && Cryptoprotocol.SelectedItem.ToString() == "AES")
+            try
             {
-                AES aes = new AES();
-                using (Aes Aes = Aes.Create())
+                if (encrypt_text.Text != null && Cryptoprotocol.SelectedItem.ToString() == "AES")
                 {
-                    if (CryptoKey1.Text != "" && CryptoKey2.Text != "" && aes.StringToByte(encrypt_text.Text, 0).Length == 16 && aes.StringToByte(CryptoKey1.Text, 0).Length == 32)
+                    AES aes = new AES();
+                    using (Aes Aes = Aes.Create())
                     {
-                        
+                        if ((CryptoKey1.Text != "" && CryptoKey2.Text != "") && (aes.StringToByte(CryptoKey1.Text, 0, true) != null && aes.StringToByte(CryptoKey2.Text, 0, true) != null) && (aes.StringToByte(CryptoKey1.Text, 0, true).Length == 32 && aes.StringToByte(CryptoKey2.Text, 0, true).Length == 16))
+                        {
 
-                        string dectext = aes.Decrypt_Aes(aes.StringToByte(encrypt_text.Text, 16), aes.StringToByte(CryptoKey1.Text, 32), aes.StringToByte(CryptoKey2.Text, 16));
-                        
+
+                            string dectext = aes.Decrypt_Aes(aes.StringToByte(encrypt_text.Text, 0, true), aes.StringToByte(CryptoKey1.Text, 32, true), aes.StringToByte(CryptoKey2.Text, 16, true));
+
                             decrypt_text.Text += dectext;
 
                             decrypt_text.Text += "\n";
-                        
-                    }
-                    else if (CryptoKey1.Text == "" || CryptoKey2.Text == "" )
-                    {
-                        MessageBox.Show("Некорректно введены ключи шифрования.");
-                        CryptoKey1.Text = "";
-                        CryptoKey2.Text = "";
 
+                        }
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("Введён неверный ключ шифровки");
-                        CryptoKey1.Text = null;
-                        CryptoKey2= null;
+                        else
+                        {
+                            MessageBox.Show("Введён неверный ключ шифровки");
+                            CryptoKey1.Text = null;
+                            CryptoKey2.Text = null;
+                        }
                     }
                 }
+            }catch
+            {
+                MessageBox.Show("Ошибка шифровки / дешифровки.");
             }
         }
 
@@ -165,7 +173,7 @@ namespace Курсач
            
 
             
-            FileStream file = new FileStream("Encrypt text.txt", FileMode.OpenOrCreate);
+            FileStream file = new FileStream("Encrypt text.txt", FileMode.Create);
             StreamWriter stream = new StreamWriter(file);
             stream.WriteLine("Aes key:");
             stream.WriteLine(CryptoKey1.Text);
@@ -185,7 +193,7 @@ namespace Курсач
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FileStream file = new FileStream("Decrypt text.txt", FileMode.OpenOrCreate);
+            FileStream file = new FileStream("Decrypt text.txt", FileMode.Create);
             StreamWriter stream = new StreamWriter(file);
             stream.WriteLine("Aes key:");
             stream.WriteLine(CryptoKey1.Text);
