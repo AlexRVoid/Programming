@@ -21,7 +21,6 @@ public:
 };
 
 
-
 extern "C++" __declspec(dllexport) class DivisionByZero : IError {
 public:
 	__declspec(dllexport) DivisionByZero() {};

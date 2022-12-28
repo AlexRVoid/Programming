@@ -131,7 +131,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Part1.cpp" />
     <ClCompile Include="Part2.cpp" />
-    <ClCompile Include="IError.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fraction.h" />
