@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab6Sharp
+namespace Lab9SharpDLL
 {
-    public class Fraction 
+
+    public class Fraction
     {
-        private int numerator, denominator;
+        public int numerator, denominator;
         private List<string> logger = new List<string>();
         public Fraction()
         {
@@ -37,7 +38,30 @@ namespace Lab6Sharp
             Console.Write("Create new Fraction\n");
 
         }
-        public static Fraction operator + (Fraction fraction1, Fraction fraction2)
+
+        static int nod(int a, int b)
+        {
+            int t;
+            if (a < b) { t = a; a = b; b = t; }
+            while (b != 0)
+            {
+                t = b;
+                b = a % b;
+                a = t;
+            }
+            return a;
+        }
+        static void swap(int a, int b)
+        {
+            int c;
+            c = a;
+            a = b;
+            b = a;
+
+        }
+
+
+        public static Fraction operator +(Fraction fraction1, Fraction fraction2)
         {
             if (fraction2.denominator == fraction1.denominator)
             {
@@ -53,10 +77,10 @@ namespace Lab6Sharp
             }
 
             fraction1.logger.Add("Do summary\n");
-            Console.Write( "Do summary\n");
+            Console.Write("Do summary\n");
 
         }
-        public static Fraction operator - (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator -(Fraction fraction1, Fraction fraction2)
         {
             if (fraction2.denominator == fraction1.denominator)
             {
@@ -71,7 +95,7 @@ namespace Lab6Sharp
                 return fraction;
             }
         }
-        public static Fraction operator / (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator /(Fraction fraction1, Fraction fraction2)
         {
             try
             {
@@ -81,19 +105,21 @@ namespace Lab6Sharp
                 Fraction fraction = new Fraction(fraction2.numerator * fraction1.numerator, fraction2.denominator * fraction1.denominator);
                 return fraction;
             }
-            catch {
+            catch
+            {
                 IncorrectInput e = new IncorrectInput();
                 e.print();
+                return null;
             }
         }
-        public static Fraction operator * (Fraction fraction1, Fraction fraction2)
+        public static Fraction operator *(Fraction fraction1, Fraction fraction2)
         {
             fraction1.logger.Add("MULTIPLE OBJECT\n");
             Console.Write("MULTIPLE OBJECT\n");
             Fraction fraction = new Fraction(fraction2.numerator * fraction1.numerator, fraction2.denominator * fraction1.denominator);
             return fraction;
         }
-        public static bool operator < (Fraction fraction1, Fraction fraction2)
+        public static bool operator <(Fraction fraction1, Fraction fraction2)
         {
             fraction1.logger.Add("LESS OPERATOR\n");
             Console.Write("LESS OPERATOR\n");
@@ -103,10 +129,10 @@ namespace Lab6Sharp
             }
             else return fraction1.numerator * fraction2.denominator < fraction2.numerator * fraction1.denominator;
         }
-        public static bool operator <= (Fraction fraction1, Fraction fraction2)
+        public static bool operator <=(Fraction fraction1, Fraction fraction2)
         {
             fraction1.logger.Add("EQUALS OR LESS OPERATOR\n");
-            Console.Write ("EQUALS OR LESS OPERATOR\n");
+            Console.Write("EQUALS OR LESS OPERATOR\n");
             if (fraction2.denominator == fraction1.denominator)
             {
                 return fraction1.numerator <= fraction2.numerator;
@@ -114,7 +140,7 @@ namespace Lab6Sharp
             else return fraction1.numerator * fraction2.denominator <= fraction2.numerator * fraction1.denominator;
         }
 
-        public static bool operator > (Fraction fraction1, Fraction fraction2)
+        public static bool operator >(Fraction fraction1, Fraction fraction2)
         {
             fraction1.logger.Add("LESS OPERATOR\n");
             Console.Write("LESS OPERATOR\n");
@@ -125,10 +151,10 @@ namespace Lab6Sharp
             else return fraction1.numerator * fraction2.denominator > fraction2.denominator * fraction1.denominator;
 
         }
-        public static bool operator >= (Fraction fraction1, Fraction fraction2)
+        public static bool operator >=(Fraction fraction1, Fraction fraction2)
         {
             fraction1.logger.Add("EQUALS OR MORE OPERATOR\n");
-            Console.Write ("EQUALS OR MORE OPERATOR\n");
+            Console.Write("EQUALS OR MORE OPERATOR\n");
             if (fraction2.denominator == fraction1.denominator)
             {
                 return fraction1.numerator >= fraction2.numerator;
@@ -137,24 +163,29 @@ namespace Lab6Sharp
         }
 
     }
-    static int nod(int a, int b)
+    public class TaskI
     {
-        int t;
-        if (a < b) { t = a; a = b; b = t; }
-        while (b != 0)
+        public void PartI()
         {
-            t = b;
-            b = a % b;
-            a = t;
+            Fraction number1 = new Fraction(7, 23);
+            Fraction number2 = new Fraction();
+
+            Console.WriteLine("numerator: ");
+            number2.numerator = int.Parse(Console.ReadLine());
+            Console.WriteLine("denominator: ");
+            number2.denominator = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(number1 > number2);
+            Console.WriteLine(number1 >= number2);
+            Console.WriteLine(number1 < number2);
+            Console.WriteLine(number1 <= number2);
+            Console.WriteLine(number1 + number2);
+            Console.WriteLine(number1 - number2);
+            Console.WriteLine(number1 * number2);
+            Console.WriteLine(number1 / number2);
+            Console.ReadKey();
         }
-        return a;
-    }
-    static void swap(int a, int b)
-    {
-        int c;
-        c = a;
-        a = b;
-        b = a;
 
     }
+
 }

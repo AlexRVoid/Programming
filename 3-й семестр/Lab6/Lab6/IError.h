@@ -3,29 +3,29 @@
 
 using namespace std;
 
-class IError
+extern "C++" __declspec(dllexport) class IError
 {
 public:
 	string description = "Error: ";
-	virtual void print() {
+	__declspec(dllexport) virtual void print() {
 		std::cout << description << std::endl;
 	}
 };
 
-class IncorrectInput : IError {
+extern "C++" __declspec(dllexport) class IncorrectInput : IError {
 public:
-	IncorrectInput() {};
-	void print() {
+	__declspec(dllexport) IncorrectInput() {};
+	__declspec(dllexport) void print() {
 		cout << description << " Incorrect input " << std::endl;
 	}
 };
 
 
 
-class DivisionByZero : IError {
+extern "C++" __declspec(dllexport) class DivisionByZero : IError {
 public:
-	DivisionByZero() {};
-	void print() {
+	__declspec(dllexport) DivisionByZero() {};
+	__declspec(dllexport) void print() {
 		cout << description << " Integer division by zero " << std::endl;
 	}
 };

@@ -52,7 +52,7 @@ int PartII()
 	}
 
 	bool win = FG.isWin(n);
-	if (win == true)
+	if (win)
 		cout << endl << "win" << endl;
 	else cout << endl << "lose" << endl;;
 	system("pause");
