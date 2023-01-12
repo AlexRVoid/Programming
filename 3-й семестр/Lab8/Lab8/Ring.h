@@ -12,8 +12,8 @@ class SellRing
 {
 public:
     void sell();
+    void ring();
 private:
     int earnings = 0;
     mutex mx;
 };
-void ring();

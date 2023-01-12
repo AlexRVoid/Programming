@@ -28,19 +28,22 @@ int main()
 			else if (topology == 1)
 			{
 				system("cls");
-				ring();
+				SellRing sell;
+				sell.ring();
 			}
 			else if (topology == 2)
 			{
 				system("cls");
-				star();
+				SellStar sell;
+				sell.star();
 			}
 			else continue;
 		}
 		else if (choice == 2)
 		{
 			system("cls");
-			withoutThr();
+			Sell sell;
+			sell.withoutThr();
 		}
 		else if (choice == 3)
 		{

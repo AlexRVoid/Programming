@@ -10,7 +10,7 @@ class Sell
 {
 public:
     void sell();
+    void withoutThr();
 private:
     int earnings = 0;
 };
-void withoutThr();

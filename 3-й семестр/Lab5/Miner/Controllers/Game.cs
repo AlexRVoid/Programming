@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Lab5
 {
+
     public class Game
     {
         public static readonly int[] mapSize = {8, 16, 24};
-        public const int cellSize = 50;
+        public const int cellSize = 40;
         
         public static int n;
 
@@ -32,6 +34,11 @@ namespace Lab5
 
         public static Form form;
 
+        private static System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab5\Miner\music.wav");
+
+        private static System.Media.SoundPlayer bombsound = new System.Media.SoundPlayer(@"C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab5\Miner\boom.wav");
+
+       
         private static void ConfigureMapSize(Form current, int n)
         {
             current.Width = mapSize[n] * cellSize + 20;
@@ -52,6 +59,7 @@ namespace Lab5
 
         public static void Init(Form current)
         {
+            player.Play();
             form = current;
             map = new int[mapSize[n], mapSize[n]];
             buttons = new Button[mapSize[n], mapSize[n]];
@@ -112,38 +120,51 @@ namespace Lab5
                     posX = 0;
                     posY = 0;
                     bombFlag[iButton, jButton] = 0;
-                    isWin();
+                    
+                    isWin(isFirstStep);
                     break;
                 case 1:
                     posX = 0;
                     posY = 2;
                     bombFlag[iButton, jButton] = 1;
-                    isWin();
+                    
+                    isWin(isFirstStep);
                     break;
             }
             pressedButton.Image = FindNeededImage(posX, posY);
         }
 
-        private static void isWin()
+        private static void isWin(bool isFirst)
         {
             int bomb = 0;
             int findbomb = 0;
-            for (int i = 0; i < mapSize[n]; i++)
+            if (isFirst == false)
             {
-                for (int j = 0; j < mapSize[n]; j++)
+                for (int i = 0; i < mapSize[n]; i++)
                 {
-                    if (map[i, j] == -1){
-                        bomb++;
-                        if (bombFlag[i, j] == 1)
+                    for (int j = 0; j < mapSize[n]; j++)
+                    {
+                        if (map[i, j] == -1)
                         {
-                            findbomb++;
+                            bomb++;
+                            if (bombFlag[i, j] == 1)
+                            {
+                                findbomb++;
+                            }
                         }
                     }
                 }
+                if (bomb == findbomb)
+                {
+                    MessageBox.Show("Победа!");
+                    form.Controls.Clear();
+                    Init(form);
+                }
             }
-            if (bomb == findbomb)
+            else
             {
-                MessageBox.Show("Победа!");
+                
+                MessageBox.Show("Бомб не обнаруженно");
                 form.Controls.Clear();
                 Init(form);
             }
@@ -166,7 +187,10 @@ namespace Lab5
 
             if (map[iButton, jButton] == -1)
             {
+
                 ShowAllBombs(iButton,jButton, n);
+                bombsound.Load();
+                bombsound.Play();
                 MessageBox.Show("Поражение!");
                 form.Controls.Clear();
                 Init(form);

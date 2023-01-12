@@ -11,17 +11,36 @@ void SellStar::sell()
     cout << "The total earnings are " << earnings << "Rub" << endl << endl;
 
 }
-void star() {
-	SellStar sell;
+void SellStar::star() {
+	
 	for (int i = 0; i < 2; i++)
 	{
-		thread th([&]() {
+		thread th1([&]() {
 			for (int i = 0; i < 5; i++)
 			{
-				sell.sell();
+				cout << "Cash : ";
+				sell();
 			}
 			});
-		th.join();
+		
+		thread th2([&]() {
+			for (int i = 0; i < 5; i++)
+			{
+				cout << "Cash 2: ";
+				sell();
+			}
+			});
+		
+		thread th3([&]() {
+			for (int i = 0; i < 5; i++)
+			{
+				cout << "Cash 3: ";
+				sell();
+			}
+			});
+		th1.join();
+		th2.join();
+		th3.join();
 	}
 	cout << "Time: " << clock();
 	system("pause");

@@ -10,7 +10,7 @@ class SellStar
 {
 public:
     void sell();
+    void star();
 private:
     int earnings = 0;
 };
-void star();

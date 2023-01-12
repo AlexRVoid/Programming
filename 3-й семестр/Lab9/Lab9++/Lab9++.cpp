@@ -18,7 +18,7 @@ int main()
 			exit(0);
 		}
 	}
-	catch (IncorrectInput& e) {
+	catch (IError& e) {
 		e.print();
 		main();
 	}

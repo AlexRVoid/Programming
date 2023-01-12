@@ -1,6 +1,8 @@
 #include "Algebra.h"
 #include "Comparison.h"
 #include <fstream>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -37,7 +39,7 @@ int main()
             cin >> NewCity;
             break;
         case 2:
-            cout << " 1) File\n 2) Console\n Your Choice: ";
+            cout << " 1) File\n 2) Console\n 3)String\n Your Choice: ";
             cin >> n;
             if (cin.fail()) {
                 cin.clear();
@@ -56,6 +58,13 @@ int main()
             }
             else if (n == 2) {
                 cout << NewCity << endl;
+                system("pause");
+            }
+            else if (n == 3)
+            {
+                stringstream sout;
+                sout << NewCity;
+                cout << sout.str();
                 system("pause");
             }
             break;

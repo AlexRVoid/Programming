@@ -11,12 +11,12 @@ void Sell::sell()
     cout << "The total earnings are " << earnings << "Rub" << endl << endl;
     
 }
-void withoutThr()
+void Sell::withoutThr()
 {
-	Sell sell;
+	
     for (int i = 0; i < 10; i++)
     {
-        sell.sell();
+        sell();
     }
     cout << "Time: " << clock();
     system("pause");

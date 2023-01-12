@@ -31,7 +31,7 @@ Fraction::Fraction(int a, int b){
 		denominator = 1;
 	}
 
-	if (numerator < 0 && denominator < 0) { numerator *= -1; denominator += -1; }
+	if (denominator < 0) { numerator *= -1; denominator += -1; }
 
 
 	logger.push_back("Create new Fraction\n");

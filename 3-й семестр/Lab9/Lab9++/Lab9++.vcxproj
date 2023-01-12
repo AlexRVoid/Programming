@@ -104,16 +104,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Александр\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\Lab9;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\Lab9</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Lab9DLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Александр\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "D:\Александр\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug\Lab9DLL.dll" "$(OutDir)"</Command>
+      <Command>xcopy /y /d "C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug\Lab9DLL.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Александр\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\Lab9;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\Lab9</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,10 +132,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Lab9DLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Александр\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "D:\Александр\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug\Lab9DLL.dll" "$(OutDir)"</Command>
+      <Command>xcopy /y /d "C:\My files\Вуз\Программирование\2 семестр\Programming\3-й семестр\Lab9\x64\Debug\Lab9DLL.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
