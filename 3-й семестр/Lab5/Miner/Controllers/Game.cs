@@ -59,7 +59,7 @@ namespace Lab5
 
         public static void Init(Form current)
         {
-            player.Play();
+            
             form = current;
             map = new int[mapSize[n], mapSize[n]];
             buttons = new Button[mapSize[n], mapSize[n]];
