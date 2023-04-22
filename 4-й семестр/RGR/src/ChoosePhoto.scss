@@ -1,0 +1,39 @@
+.App {
+  background: beige;
+  border-radius: 25px;
+  padding: 10px;
+  .boxImg {
+    padding: 35px;
+    background: white;
+    border-radius: 35px;
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    .imgInput {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .box {
+      margin: auto;
+      outline: 2px solid #f31010;
+      display: flex;
+      height: 300px;
+      width: 400px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .leftPanel {
+    height: 125%;
+    width: 300px;
+    margin-left: 10px;
+    background: white;
+
+    border-radius: 35px;
+    .filter {
+    }
+  }
+}
