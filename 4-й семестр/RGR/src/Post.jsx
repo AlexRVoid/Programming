@@ -4,6 +4,7 @@ const Post = () => {
     const [posts, setPosts]=useState([])
     const[title,setTitle]=useState('')
     const[deadline, setDeadline] = useState('')
+    const [completed, setCompleted] = useState([])
     const clearPosts=()=>{
         setPosts([])
     }
@@ -16,6 +17,15 @@ const Post = () => {
 
         }
     }
+    const changeCompleted = (id) => {
+        let copy = Object.assign([], completed);
+        copy[id] = !copy[id];
+        setCompleted(copy);
+    }
+
+    const dateCheck = (id) => {
+
+    }
 
 
     return (
@@ -27,7 +37,7 @@ const Post = () => {
                         <input value ={title} className="input" onChange={e=> setTitle(e.target.value)} type="text" id="task" placeholder="Введите вашу задачу" required/>
 
 
-                        <input value ={deadline} className="input" onChange={e=> setDeadline(e.target.value)} type="text" id="date" placeholder="Введите дату" required/>
+                        <input value ={deadline} className="input" onChange={e=> setDeadline(e.target.value)} type="date" id="date" placeholder="Введите дату" required/>
 
                         <div onClick={addList} className="submit">Добавить</div>
 
@@ -37,7 +47,7 @@ const Post = () => {
                     <div>
                         <div className="Works">
                             {
-                                posts.map((el, id) => <div /*onClick={() => changeCompleted(id)} className={completed[id]? "task completed" : "task"}*/ key={id}>
+                                posts.map((el, id) => <div onClick={() => changeCompleted(id)} className={completed[id]? "task completed" : "task"} key={id}>
 
                                     <h3>{el.task}</h3>
                                     <div className="task-meta">
