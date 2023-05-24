@@ -86,6 +86,10 @@ const Words = () => {
         setScore(0)
     }
 
+    const giveUP = () =>{
+
+    }
+
 
     return (
         <div className="App">
@@ -132,6 +136,7 @@ const Words = () => {
                 ) : ''
 
             }
+            <div onClick={restart} className="clearList" id="circ">Сдаться</div>
             <div onClick={restart} className="clearList" id="circ">Restart</div>
 
 
