@@ -87,7 +87,7 @@ const Words = () => {
     }
 
     const giveUP = () =>{
-
+        setGame(false)
     }
 
 
@@ -136,7 +136,7 @@ const Words = () => {
                 ) : ''
 
             }
-            <div onClick={restart} className="clearList" id="circ">Сдаться</div>
+            <div onClick={giveUP} className="clearList" id="circ">Сдаться</div>
             <div onClick={restart} className="clearList" id="circ">Restart</div>
 
 
