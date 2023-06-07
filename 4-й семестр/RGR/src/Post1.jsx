@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -11,40 +11,6 @@ const localizer = momentLocalizer(moment);
 const Post = () => {
     const [newEvent, setNewEvent] = useState({ title: '', start: null, end: null });
     const [allEvents, setAllEvents] = useState([]);
-    const [selectedEvent, setSelectedEvent] = useState(null);
-    const [orders, setOrders] = useState([]);
-
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await fetch('orders.txt');
-                const data = await response.text();
-                const orders = data
-                    .split('\n')
-                    .filter((line) => line.trim() !== '')
-                    .map((line) => {
-                        const [chatId, title] = line.split(': ');
-                        return { id: chatId, title };
-                    });
-                setOrders(orders);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchOrders();
-    }, []);
-
-    useEffect(() => {
-        const savedEvents = localStorage.getItem('events');
-        if (savedEvents) {
-            setAllEvents(JSON.parse(savedEvents));
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('events', JSON.stringify(allEvents));
-    }, [allEvents]);
 
     const handleAddEvent = () => {
         if (!newEvent.title || !newEvent.start || !newEvent.end) {
@@ -52,21 +18,9 @@ const Post = () => {
             return;
         }
 
-        const updatedEvents = [...allEvents, { ...newEvent, id: Date.now() }];
+        const updatedEvents = [...allEvents, newEvent];
         setAllEvents(updatedEvents);
         setNewEvent({ title: '', start: null, end: null });
-    };
-
-    const handleDeleteEvent = () => {
-        if (!selectedEvent) {
-            alert('Please select an event');
-            return;
-        }
-
-        const updatedEvents = allEvents.filter((event) => event.id !== selectedEvent.id);
-
-        setAllEvents(updatedEvents);
-        setSelectedEvent(null);
     };
 
     const handleSelectSlot = (slotInfo) => {
@@ -74,45 +28,12 @@ const Post = () => {
         const end = slotInfo.end;
 
         setNewEvent({ ...newEvent, start, end });
-        setSelectedEvent(null);
     };
-
-    const handleSelectEvent = (event) => {
-        setSelectedEvent(event);
-        setNewEvent({
-            title: event.title,
-            start: moment(event.start).toDate(),
-            end: moment(event.end).toDate()
-        });
-    };
-
-    const handleStartTimeChange = (e) => {
-        if (newEvent.start) {
-            const startTime = moment(newEvent.start).set({
-                hour: e.target.value.split(':')[0],
-                minute: e.target.value.split(':')[1],
-            });
-            setNewEvent({ ...newEvent, start: startTime });
-        }
-    };
-
-    const handleEndTimeChange = (e) => {
-        if (newEvent.end) {
-            const endTime = moment(newEvent.end).set({
-                hour: e.target.value.split(':')[0],
-                minute: e.target.value.split(':')[1],
-            });
-            setNewEvent({ ...newEvent, end: endTime });
-        }
-    };
-
-
-
 
     return (
         <div className="App">
             <h1>Calendar</h1>
-            <h2>Add/Edit Event</h2>
+            <h2>Add New Event</h2>
             <div>
                 <form className="Inputbox">
                     <input
@@ -142,7 +63,13 @@ const Post = () => {
                                 type="time"
                                 id="start-time"
                                 value={newEvent.start ? moment(newEvent.start).format('HH:mm') : ''}
-                                onChange={handleStartTimeChange}
+                                onChange={(e) => {
+                                    const startTime = moment(newEvent.start).set({
+                                        hour: e.target.value.split(':')[0],
+                                        minute: e.target.value.split(':')[1],
+                                    });
+                                    setNewEvent({ ...newEvent, start: startTime });
+                                }}
                             />
                         </div>
                     </div>
@@ -164,36 +91,30 @@ const Post = () => {
                                 type="time"
                                 id="end-time"
                                 value={newEvent.end ? moment(newEvent.end).format('HH:mm') : ''}
-                                onChange={handleEndTimeChange}
+                                onChange={(e) => {
+                                    const endTime = moment(newEvent.end).set({
+                                        hour: e.target.value.split(':')[0],
+                                        minute: e.target.value.split(':')[1],
+                                    });
+                                    setNewEvent({ ...newEvent, end: endTime });
+                                }}
                             />
                         </div>
                     </div>
-                    {selectedEvent ? (
-                        <div className="button-container">
-                            <button onClick={handleDeleteEvent} className="submit delete">
-                                Delete Event
-                            </button>
-                        </div>
-                    ) : (
-                        <button onClick={handleAddEvent} className="submit">
-                            Add Event
-                        </button>
-                    )}
+                    <button onClick={handleAddEvent} className="submit">
+                        Add Event
+                    </button>
                 </form>
             </div>
-            <div className="calendar-container">
-                <Calendar
-                    localizer={localizer}
-                    events={allEvents}
-                    startAccessor="start"
-                    endAccessor="end"
-                    style={{ height: '100%' }}
-                    selectable
-                    onSelectSlot={handleSelectSlot}
-                    onSelectEvent={handleSelectEvent}
-                />
-            </div>
-
+            <Calendar
+                localizer={localizer}
+                events={allEvents}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: 500, margin: '50px' }}
+                selectable={true}
+                onSelectSlot={handleSelectSlot}
+            />
         </div>
     );
 };

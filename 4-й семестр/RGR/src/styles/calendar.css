@@ -1,0 +1,233 @@
+/* calendar.css */
+
+.App {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.Inputbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.datetime-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.date-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.time-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit {
+    width: 150px;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #0056b3;
+}
+
+.calendar-container {
+    height: 500px;
+    margin: 50px;
+}
+
+.rbc-calendar {
+    height: 100%;
+}
+
+.rbc-header {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-width: 1px 0;
+    z-index: 0;
+}
+
+.rbc-header > div {
+    padding: 10px;
+}
+
+.rbc-row-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+}
+
+.rbc-date-cell {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    text-align: right;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.rbc-date-cell:hover {
+    background-color: #f5f5f5;
+}
+
+.rbc-event {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.rbc-today {
+    font-weight: bold;
+}
+
+.react-datepicker {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    height: auto;
+}
+
+.react-datepicker__header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.react-datepicker__month-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.react-datepicker__month {
+    margin: 0 10px;
+}
+
+.react-datepicker__day-names {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.react-datepicker__day-name {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.react-datepicker__week {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.react-datepicker__day {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.react-datepicker__day:hover {
+    background-color: #f5f5f5;
+}
+
+.react-datepicker__day--selected {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.react-datepicker__day--today {
+    font-weight: bold;
+}
+
+.react-datepicker__time-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.react-datepicker__time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.react-datepicker__time-box {
+    display: flex;
+    align-items: center;
+}
+
+.react-datepicker__time-box input[type='time'] {
+    width: 70px;
+    height: 30px;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.react-datepicker__time-box label {
+    margin-right: 5px;
+}
+
+.react-datepicker__navigation {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.react-datepicker__navigation--previous {
+    float: left;
+}
+
+.react-datepicker__navigation--next {
+    float: right;
+}
