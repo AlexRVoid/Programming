@@ -43,6 +43,27 @@ bot.onText(/\/order (.+)/, (msg, match) => {
     );
 });
 
+// Автооповещение о новых заказах
+function checkNewOrders() {
+    fs.readFile(ordersFilePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        const orders = data.trim().split('\n');
+        const openOrders = orders.filter((order) => order.includes('OPEN'));
+
+        if (openOrders.length > 0) {
+            const notificationMessage = 'Новые заказы:\n' + openOrders.join('\n');
+            bot.sendMessage(ADMIN_CHAT_ID, notificationMessage);
+        }
+    });
+}
+
+// Проверка новых заказов каждые 5 минут (300000 миллисекунд)
+setInterval(checkNewOrders, 300000);
+
 // Обработчик команды /close
 bot.onText(/\/close (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
