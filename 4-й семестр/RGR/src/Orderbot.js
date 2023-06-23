@@ -51,10 +51,7 @@ bot.onText(/\/order (.+)/, (msg, match) => {
                     bot.sendMessage(chatId, 'Произошла ошибка при сохранении заказа.');
                 } else {
                     bot.sendMessage(chatId, 'Заказ сохранен. ID заказа: ' + orderId);
-                    bot.sendMessage(
-                        chatId,
-                        'Спасибо за заказ! Пожалуйста, оставьте обратную связь по заказу:'
-                    );
+
                 }
             }
         );

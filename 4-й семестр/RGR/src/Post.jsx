@@ -6,34 +6,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles/calendar.css';
 
+
 const localizer = momentLocalizer(moment);
 
 const Post = () => {
     const [newEvent, setNewEvent] = useState({ title: '', start: null, end: null });
     const [allEvents, setAllEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
-    const [orders, setOrders] = useState([]);
-
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await fetch('orders.txt');
-                const data = await response.text();
-                const orders = data
-                    .split('\n')
-                    .filter((line) => line.trim() !== '')
-                    .map((line) => {
-                        const [chatId, title] = line.split(': ');
-                        return { id: chatId, title };
-                    });
-                setOrders(orders);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchOrders();
-    }, []);
 
     useEffect(() => {
         const savedEvents = localStorage.getItem('events');
@@ -45,6 +24,7 @@ const Post = () => {
     useEffect(() => {
         localStorage.setItem('events', JSON.stringify(allEvents));
     }, [allEvents]);
+
 
     const handleAddEvent = () => {
         if (!newEvent.title || !newEvent.start || !newEvent.end) {
@@ -134,6 +114,7 @@ const Post = () => {
                                 placeholderText="Start Date"
                                 className="input"
                                 required
+                                calendarClassName="custom-datepicker"
                             />
                         </div>
                         <div className="time-input">
@@ -156,6 +137,7 @@ const Post = () => {
                                 placeholderText="End Date"
                                 className="input"
                                 required
+                                calendarClassName="custom-datepicker"
                             />
                         </div>
                         <div className="time-input">
@@ -181,7 +163,7 @@ const Post = () => {
                     )}
                 </form>
             </div>
-            <div className="calendar-container">
+            <div className="calendar-container" style={{ marginTop: '220px' }}>
                 <Calendar
                     localizer={localizer}
                     events={allEvents}
@@ -193,6 +175,7 @@ const Post = () => {
                     onSelectEvent={handleSelectEvent}
                 />
             </div>
+
 
         </div>
     );

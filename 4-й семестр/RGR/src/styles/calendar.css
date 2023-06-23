@@ -1,5 +1,3 @@
-/* calendar.css */
-
 .App {
     text-align: center;
     margin-top: 50px;
@@ -230,4 +228,7 @@ h2 {
 
 .react-datepicker__navigation--next {
     float: right;
+}
+.custom-datepicker {
+    width: 250px;
 }

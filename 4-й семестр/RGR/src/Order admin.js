@@ -2,6 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
 
+
 // Токен вашего бота, полученный от BotFather
 const token = '6100351907:AAGDnfTFiWfe2rSp-MKKdaEohLUS_JoNlI8';
 

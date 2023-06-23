@@ -9,51 +9,51 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './styles/app.css'
 const Post = () => {
-//     const [posts, setPosts]=useState([])
-//     const[title,setTitle]=useState('')
-//     const[start, setStart] = useState('')
-//     const[deadline, setDeadline] = useState('')
-//     const [completed, setCompleted] = useState([])
-//     const clearPosts=()=>{
-//         setPosts([])
-//     }
-//     const addList = () =>{
-//         if (title !== '' && deadline !== ''){
-//             setPosts([{task:title,dateStart: start, dateEnd: deadline ,id:Date.now(), completed:false},...posts])
-//             setTitle('')
-//             setStart('')
-//             setDeadline('')
-//             console.log(posts.task);
-//
-//         }
-//     }
-//     const changeCompleted = (id) => {
-//         let copy = Object.assign([], completed);
-//         copy[id] = !copy[id];
-//         setCompleted(copy);
-//     }
-//
-//     const dateCheck = (id) => {
-//
-//     }
-//
-//
-//     return (
-//         <div className="App">
-//                 <h1 className="Name">Tasker</h1>
-//
-//                 <form className="Inputbox">
-//
-//                         <input value ={title} className="input" onChange={e=> setTitle(e.target.value)} type="text" id="task" placeholder="Введите вашу задачу" required/>
-//
-//                         <input value ={deadline} className="input" onChange={e=> setStart(e.target.value)} type="date" id="date" placeholder="Введите дату начала" required/>
-//
-//                         <input value ={deadline} className="input" onChange={e=> setDeadline(e.target.value)} type="date" id="date" placeholder="Введите дату окончания" required/>
-//
-//                         <div onClick={addList} className="submit">Добавить</div>
-//
-//                 </form>
-//
+    const [posts, setPosts]=useState([])
+    const[title,setTitle]=useState('')
+    const[start, setStart] = useState('')
+    const[deadline, setDeadline] = useState('')
+    const [completed, setCompleted] = useState([])
+    const clearPosts=()=>{
+        setPosts([])
+    }
+    const addList = () =>{
+        if (title !== '' && deadline !== ''){
+            setPosts([{task:title,dateStart: start, dateEnd: deadline ,id:Date.now(), completed:false},...posts])
+            setTitle('')
+            setStart('')
+            setDeadline('')
+            console.log(posts.task);
+
+        }
+    }
+    const changeCompleted = (id) => {
+        let copy = Object.assign([], completed);
+        copy[id] = !copy[id];
+        setCompleted(copy);
+    }
+
+    const dateCheck = (id) => {
+
+    }
+
+
+    return (
+        <div className="App">
+                <h1 className="Name">Tasker</h1>
+
+                <form className="Inputbox">
+
+                        <input value ={title} className="input" onChange={e=> setTitle(e.target.value)} type="text" id="task" placeholder="Введите вашу задачу" required/>
+
+                        <input value ={deadline} className="input" onChange={e=> setStart(e.target.value)} type="date" id="date" placeholder="Введите дату начала" required/>
+
+                        <input value ={deadline} className="input" onChange={e=> setDeadline(e.target.value)} type="date" id="date" placeholder="Введите дату окончания" required/>
+
+                        <div onClick={addList} className="submit">Добавить</div>
+
+                </form>
+
             {
                 posts.length ? (
                     <div>
